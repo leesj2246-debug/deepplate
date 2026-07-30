@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Deep Plate (딥플레이트) | リアル韓国ローカルグルメ1:1キュレーション</title>
+  
+  <!-- Official Ultra-Crisp Vector SVG Favicon & Mobile Touch Icons -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
+  
+  <!-- Google Fonts: Noto Sans KR & Noto Sans JP (Strict rule: No Inter/Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & CLEAN EDITORIAL TYPOGRAPHY SYSTEM
+       ========================================================================== */
+    :root {
+      --bg-cream: #FBF9F5;
+      --text-black: #111111;
+      --accent-red: #B81D24;
+      --border-solid: rgba(17, 17, 17, 0.08);
+      --card-white: #FFFFFF;
+      --dark-hero: #121110;
+      --font-kr: 'Noto Sans KR', sans-serif;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 16px 40px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 24px 60px rgba(0, 0, 0, 0.08);
+      --ease-smooth: cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      font-family: var(--font-jp), var(--font-kr), sans-serif;
+      color: var(--text-black);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100vw;
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    /* Global Crisp Image Rendering */
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      transform: translateZ(0);
+    }
+
+    /* Strict Language Visibility Rules */
+    body[data-lang="ja"] .lang-kr, body[data-lang="ja"] .lang-en,
+    body[data-lang="jp"] .lang-kr, body[data-lang="jp"] .lang-en,
+    body:not([data-lang="ko"]):not([data-lang="kr"]):not([data-lang="en"]) .lang-kr,
+    body:not([data-lang="ko"]):not([data-lang="kr"]):not([data-lang="en"]) .lang-en {
+      display: none !important;
+    }
+
+    body[data-lang="ko"] .lang-jp, body[data-lang="ko"] .lang-en,
+    body[data-lang="kr"] .lang-jp, body[data-lang="kr"] .lang-en {
+      display: none !important;
+    }
+
+    body[data-lang="en"] .lang-jp, body[data-lang="en"] .lang-kr {
+      display: none !important;
+    }
+
+    /* Clean Editorial Emphasis Utility */
+    .text-crimson-emphasis {
+      color: var(--accent-red);
+      font-weight: 900;
+    }
+
+    .hero-title .text-crimson-emphasis {
+      color: #E52E35;
+      font-weight: 900;
+      text-shadow: none;
+    }
+
+    .accent-bold {
+      font-weight: 900;
+      color: var(--text-black);
+    }
+
+    /* Red Arrow Utility */
+    .red-arrow {
+      color: var(--accent-red);
+      font-weight: 700;
+      margin-left: 6px;
+      display: inline-block;
+      transition: transform 0.3s var(--ease-smooth);
+    }
+    
+    a:hover .red-arrow, .btn:hover .red-arrow {
+      transform: translateX(6px);
+    }
+
+    /* 100% Full-Width Fluid Wrapper */
+    .site-wrapper {
+      width: 100%;
+      background-color: var(--bg-cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Inner Max Container for Desktop Alignment */
+    .content-container {
+      width: 100%;
+      max-width: 1380px;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       TOP NAVIGATION BAR (FULL EDGE-TO-EDGE FLUID HEADER)
+       ========================================================================== */
+    .nav-bar-outer {
+      width: 100%;
+      background-color: rgba(18, 17, 16, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px max(28px, 4vw);
+      color: #FFFFFF;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .nav-left-group {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .brand-logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      transition: opacity 0.3s var(--ease-editorial), transform 0.3s var(--ease-editorial);
+    }
+
+    .brand-logo-lockup:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .logo-icon-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-main-text {
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      line-height: 1;
+      font-family: var(--font-kr);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-menu a {
+      color: rgba(255, 255, 255, 0.88);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .nav-menu a:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-right-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-left: auto;
+    }
+
+    .lang-switcher-wrap {
+      display: inline-flex;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.75);
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .lang-btn.active {
+      background-color: var(--accent-red);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(184, 29, 36, 0.45);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ==========================================================================
+       HERO BANNER SECTION
+       ========================================================================== */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 100vh;
+      background: var(--dark-hero);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 60px;
+    }
+
+    /* Toss-Style Bouncing Scroll Down Indicator */
+    .scroll-down-indicator {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.72);
+      text-decoration: none;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      transition: all 0.3s var(--ease-smooth);
+      cursor: pointer;
+    }
+
+    .scroll-down-indicator:hover {
+      color: #FFFFFF;
+      transform: translateX(-50%) translateY(3px);
+    }
+
+    .scroll-chevron {
+      animation: bounceDown 2s infinite var(--ease-smooth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .scroll-down-indicator:hover .scroll-chevron {
+      background: var(--accent-red);
+      border-color: var(--accent-red);
+      box-shadow: 0 4px 14px rgba(184, 29, 36, 0.5);
+    }
+
+    @keyframes bounceDown {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(6px);
+      }
+      60% {
+        transform: translateY(3px);
+      }
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(18, 17, 16, 0.45) 0%, rgba(18, 17, 16, 0.65) 50%, rgba(18, 17, 16, 0.95) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s var(--ease-smooth);
+      pointer-events: none;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .hero-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0.42;
+      filter: contrast(108%) brightness(92%);
+      transition: opacity 0.8s ease;
+      transform: none !important;
+    }
+
+    .hero-content-inner {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #FFFFFF;
+    }
+
+    .hero-main-info {
+      max-width: 880px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-meta-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #FFFFFF;
+      margin: 0 auto 18px auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(184, 29, 36, 0.95);
+      padding: 6px 18px;
+      border-radius: var(--radius-pill);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 5.5vw, 4.3rem);
+      font-weight: 900;
+      line-height: 1.42;
+      letter-spacing: -0.04em;
+      margin-bottom: 52px;
+      text-align: center;
+      color: #FFFFFF;
+      text-shadow: 0 4px 32px rgba(0, 0, 0, 0.95);
+      width: 100%;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-title-slide {
+      display: none;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s var(--ease-smooth), transform 0.4s var(--ease-smooth);
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-title-slide.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero-see-project {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 10px auto 42px auto;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      background: var(--accent-red);
+      padding: 18px 44px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--accent-red);
+      box-shadow: 0 8px 26px rgba(184, 29, 36, 0.5);
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .hero-see-project .red-arrow {
+      color: #FFFFFF;
+      margin-left: 8px;
+    }
+
+    .hero-see-project:hover {
+      background: #A0171D;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(184, 29, 36, 0.6);
+    }
+
+    .hero-controls-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(12px);
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      margin: 0 auto;
+    }
+
+    .slide-nav-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #FFFFFF;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .slide-nav-btn:hover {
+      background: var(--accent-red);
+      border-color: var(--accent-red);
+      transform: scale(1.08);
+    }
+
+    .hero-slide-num {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .hero-slide-num span {
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+
+    /* ==========================================================================
+       2. PROBLEM + SOLUTION SECTION (PERFECTLY CENTERED IN ALL LANGUAGES)
+       ========================================================================== */
+    .problem-solution-section {
+      width: 100%;
+      padding: 90px max(24px, 4vw) 40px max(24px, 4vw);
+    }
+
+    .problem-solution-card {
+      background: transparent;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+      text-align: center;
+      position: relative;
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .problem-solution-card:hover {
+      box-shadow: none;
+      transform: none;
+    }
+
+    /* Minimalist Elegant Divider Tag */
+    .problem-tag-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    .problem-tag-line {
+      height: 1px;
+      width: 40px;
+      background: rgba(184, 29, 36, 0.35);
+    }
+
+    .problem-tag {
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--accent-red);
+      text-transform: uppercase;
+    }
+
+    .problem-subtitle {
+      font-size: clamp(2rem, 3.8vw, 2.8rem);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      color: var(--text-black);
+      margin-bottom: 22px;
+      line-height: 1.25;
+      text-align: center;
+      width: 100%;
+      text-wrap: balance;
+    }
+
+    .problem-body {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      color: #555555;
+      line-height: 1.72;
+      max-width: 820px;
+      margin: 0 auto 36px auto;
+      text-align: center;
+      width: 100%;
+      text-wrap: balance;
+      font-weight: 400;
+    }
+
+    /* 100% Center-Aligned Solution Banner */
+    .problem-highlight-inline {
+      background: rgba(184, 29, 36, 0.04);
+      border: none;
+      border-left: 3px solid var(--accent-red);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 32px;
+      max-width: 820px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .problem-highlight-inline .highlight-badge-mini {
+      background: var(--accent-red);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.12em;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .problem-highlight-inline .highlight-text {
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      font-weight: 900;
+      color: var(--text-black);
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ==========================================================================
+       MAIN CONTENT: ASYMMETRIC GRID (4-CARD GALLERY)
+       ========================================================================== */
+    .main-grid-container {
+      padding: 60px max(24px, 4vw) 60px max(24px, 4vw);
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(36px, 5vw, 80px);
+      position: relative;
+    }
+
+    /* LEFT COLUMN COMPONENTS */
+    .left-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .left-intro-block {
+      margin-bottom: 90px;
+    }
+
+    .tag-since {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #777777;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .left-main-heading {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.03em;
+      color: var(--text-black);
+      margin-bottom: 24px;
+    }
+
+    .single-line-red {
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    /* Clean Crisp Card Container */
+    .asymmetric-card {
+      position: relative;
+      margin-bottom: 90px;
+      transition: transform 0.6s var(--ease-editorial);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      border-radius: 12px;
+      width: 100%;
+      height: clamp(340px, 26vw, 440px);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.04);
+      border: none;
+      background-color: var(--text-black);
+      transition: box-shadow 0.6s var(--ease-editorial);
+    }
+
+    /* Asymmetric Dynamic Image Heights for Editorial Rhythm */
+    .card-1 .card-img-wrap {
+      height: clamp(380px, 29vw, 480px);
+    }
+
+    .card-2 .card-img-wrap {
+      height: clamp(290px, 21vw, 360px);
+    }
+
+    .card-3 .card-img-wrap {
+      height: clamp(330px, 24vw, 410px);
+    }
+
+    .card-4 .card-img-wrap {
+      height: clamp(400px, 31vw, 500px);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      opacity: 0.95;
+      transition: transform 0.7s var(--ease-editorial), filter 0.7s var(--ease-editorial);
+      filter: contrast(104%);
+    }
+
+    .asymmetric-card:hover .card-img {
+      transform: scale(1.045);
+      filter: contrast(108%);
+    }
+
+    /* Editorial Magazine Caption Block (Below Image) */
+    .card-caption-block {
+      padding-top: 18px;
+      text-align: left;
+      transition: transform 0.4s var(--ease-editorial);
+    }
+
+    .asymmetric-card:hover .card-caption-block {
+      transform: translateY(-4px);
+    }
+
+    .card-category {
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: var(--accent-red);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+      transition: color 0.4s ease, letter-spacing 0.4s var(--ease-editorial);
+    }
+
+    .asymmetric-card:hover .card-category {
+      letter-spacing: 0.22em;
+    }
+
+    .card-title {
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-weight: 900;
+      line-height: 1.35;
+      color: var(--text-black);
+      letter-spacing: -0.025em;
+    }
+
+    /* RIGHT COLUMN COMPONENTS (Staggered Offset) */
+    .right-column {
+      display: flex;
+      flex-direction: column;
+      padding-top: clamp(160px, 14vw, 220px); /* Asymmetric Staggered Offset Shift */
+    }
+
+    .right-column .asymmetric-card {
+      margin-bottom: 90px;
+    }
+
+    /* ==========================================================================
+       DEDICATED FULL-WIDTH HORIZONTAL APPLICATION & HOW IT WORKS SECTION
+       ========================================================================== */
+    .how-it-works-section {
+      width: 100%;
+      padding: 20px max(24px, 4vw) 100px max(24px, 4vw);
+    }
+
+    .how-it-works-section {
+      width: 100%;
+      padding: 90px max(24px, 4vw) 100px max(24px, 4vw);
+      border-top: 1px solid var(--border-solid);
+    }
+
+    .how-it-works-card {
+      background: transparent;
+      border: none;
+      padding: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .how-it-works-card:hover {
+      box-shadow: none;
+      transform: none;
+    }
+
+    .how-header-wrap {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .how-block-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      color: var(--text-black);
+    }
+
+    .how-block-subtitle {
+      font-size: 0.95rem;
+      color: #555555;
+      line-height: 1.5;
+    }
+
+    /* Horizontal 3 Steps Grid Layout (Spacious & Comfortable) */
+    .step-horizontal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 56px;
+    }
+
+    .step-item-wide {
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(17, 17, 17, 0.07);
+      padding: 40px 32px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+      transition: all 0.45s var(--ease-editorial);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ghost Background Step Numbers (Positioned Comfortably Inside) */
+    .step-item-wide::before {
+      content: attr(data-step-num);
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: rgba(184, 29, 36, 0.12);
+      letter-spacing: -0.04em;
+      pointer-events: none;
+      transition: color 0.4s var(--ease-editorial), transform 0.4s var(--ease-editorial);
+    }
+
+    .step-item-wide:hover {
+      background: #FFFFFF;
+      border-color: rgba(184, 29, 36, 0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(184, 29, 36, 0.09);
+    }
+
+    .step-item-wide:hover::before {
+      color: var(--accent-red);
+      transform: translateY(-2px);
+    }
+
+    .step-badge {
+      background: var(--text-black);
+      color: #FFFFFF;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .step-info-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--text-black);
+      margin-bottom: 10px;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+    }
+
+    .step-info-desc {
+      font-size: 0.88rem;
+      color: #666666;
+      line-height: 1.6;
+    }
+
+    /* Wide Crimson Pill CTA Button (Perfectly Center Aligned) */
+    .cta-button-wide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--accent-red);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 22px 36px;
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      border-radius: var(--radius-pill);
+      border: none;
+      box-shadow: 0 10px 30px rgba(184, 29, 36, 0.35);
+      cursor: pointer;
+      transition: all 0.3s var(--ease-smooth);
+    }
+
+    .cta-button-wide .red-arrow {
+      color: #FFFFFF;
+      margin-left: 8px;
+    }
+
+    .cta-button-wide:hover {
+      background: #A0171D;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(184, 29, 36, 0.5);
+    }
+
+    /* ==========================================================================
+       SITE FOOTER
+       ========================================================================== */
+    .site-footer {
+      border-top: 1px solid var(--border-solid);
+      padding: 30px max(24px, 4vw);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: #555555;
+      background-color: var(--bg-cream);
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .footer-left {
+      font-weight: 700;
+      color: var(--text-black);
+    }
+
+    .footer-center {
+      letter-spacing: 0.05em;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-right a {
+      color: var(--text-black);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .footer-right a:hover {
+      color: var(--accent-red);
+    }
+
+    /* ==========================================================================
+       LUXURY EDITORIAL ANIMATION & MOTION SYSTEM (DEEP PLATE BRANDING)
+       ========================================================================== */
+    :root {
+      --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Subtle Elegant Scroll Reveal */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s var(--ease-editorial), transform 0.75s var(--ease-editorial);
+      will-change: opacity, transform;
+    }
+
+    .fade-up.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered Delay Utilities */
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.18s; }
+    .delay-3 { transition-delay: 0.28s; }
+    .delay-4 { transition-delay: 0.38s; }
+
+    /* Luxury Hover Effects for Gallery Cards */
+    .asymmetric-card {
+      transition: transform 0.6s var(--ease-editorial), box-shadow 0.6s var(--ease-editorial);
+    }
+
+    .asymmetric-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card-img-wrap {
+      transition: box-shadow 0.6s var(--ease-editorial), border-color 0.6s var(--ease-editorial);
+    }
+
+    .asymmetric-card:hover .card-img-wrap {
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+      border-color: rgba(184, 29, 36, 0.3);
+    }
+
+    .card-overlay-label {
+      transition: transform 0.5s var(--ease-editorial), background 0.5s var(--ease-editorial), border-color 0.5s var(--ease-editorial);
+    }
+
+    .asymmetric-card:hover .card-overlay-label {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(184, 29, 36, 0.35);
+    }
+
+    /* Step Items Interactive Glow */
+    .step-item-wide {
+      transition: transform 0.5s var(--ease-editorial), border-color 0.5s var(--ease-editorial), box-shadow 0.5s var(--ease-editorial), background-color 0.5s var(--ease-editorial);
+    }
+
+    .step-item-wide:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-red);
+      box-shadow: 0 16px 36px rgba(184, 29, 36, 0.08);
+      background-color: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       ULTRA-CLEAN EDITORIAL FAQ SECTION (BORDERLESS LINE ACCORDION)
+       ========================================================================== */
+    .faq-section {
+      width: 100%;
+      padding: 60px max(24px, 4vw) 120px max(24px, 4vw);
+    }
+
+    .faq-container-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-header-wrap {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .faq-tag-mini {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      color: var(--accent-red);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .faq-block-title {
+      font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--text-black);
+    }
+
+    .faq-accordion-list {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--border-solid);
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--border-solid);
+      background: transparent;
+      transition: background-color 0.3s var(--ease-editorial);
+    }
+
+    .faq-btn {
+      width: 100%;
+      padding: 26px 8px;
+      background: transparent;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--text-black);
+      gap: 20px;
+      transition: color 0.3s ease;
+    }
+
+    .faq-btn:hover {
+      color: var(--accent-red);
+    }
+
+    .faq-q-text {
+      font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.4;
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .faq-q-num {
+      color: var(--accent-red);
+      font-size: 0.88rem;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .faq-icon-toggle {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.4s var(--ease-editorial);
+    }
+
+    .faq-icon-toggle svg path {
+      transition: stroke 0.3s ease;
+    }
+
+    .faq-btn:hover .faq-icon-toggle svg path,
+    .faq-item.active .faq-icon-toggle svg path {
+      stroke: var(--accent-red);
+    }
+
+    .faq-item.active .faq-icon-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s var(--ease-editorial), padding 0.45s var(--ease-editorial);
+      padding: 0 8px 0 40px;
+    }
+
+    .faq-item.active .faq-answer-content {
+      max-height: 250px;
+      padding: 0 8px 28px 40px;
+    }
+
+    .faq-answer-text {
+      font-size: 0.98rem;
+      color: #555555;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE MEDIA QUERIES
+       ========================================================================== */
+
+    @media (max-width: 1199px) {
+      .main-grid-container {
+        padding: 60px 24px 40px 24px;
+        gap: 40px;
+      }
+      .right-column { padding-top: 80px; }
+      .nav-bar { padding: 18px 24px; }
+      .nav-left-group { gap: 28px; }
+      
+      .problem-solution-card { padding: 48px 40px; }
+      .how-it-works-card { padding: 44px 36px; }
+      .step-horizontal-grid { gap: 18px; }
+    }
+
+    @media (max-width: 991px) {
+      .main-grid-container {
+        grid-template-columns: 1fr;
+        padding: 40px 24px 20px 24px;
+        gap: 50px;
+      }
+      .right-column { padding-top: 0; }
+      .left-intro-block { margin-bottom: 50px; }
+      .asymmetric-card, .right-column .asymmetric-card { margin-bottom: 60px; }
+      
+      .hero-banner { height: 100vh; min-height: 100vh; }
+
+      .step-horizontal-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .how-it-works-card { padding: 36px 24px; }
+    }
+
+    @media (max-width: 767px) {
+      .nav-bar {
+        padding: 14px 20px;
+      }
+      
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(22, 21, 20, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 20px 24px;
+        gap: 16px;
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: none;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .nav-menu a {
+        width: 100%;
+        font-size: 1rem;
+        padding: 10px 14px;
+      }
+
+      .hero-banner {
+        height: 100vh;
+        min-height: 100vh;
+      }
+
+      .problem-solution-section {
+        padding: 50px 14px 20px 14px;
+      }
+      .problem-solution-card {
+        padding: 36px 20px;
+      }
+      .problem-highlight-inline {
+        padding: 18px 20px;
+      }
+
+      .main-grid-container {
+        padding: 30px 14px 20px 14px;
+        gap: 40px;
+      }
+
+      .card-img-wrap {
+        height: 280px;
+      }
+
+      .card-overlay-label {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: calc(100% - 24px);
+        padding: 12px 16px;
+      }
+
+      .card-title {
+        font-size: 1.05rem;
+      }
+
+      .how-it-works-section {
+        padding: 20px 14px 60px 14px;
+      }
+
+      .cta-button-wide {
+        font-size: 1rem;
+        padding: 18px 24px;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+        padding: 30px 18px;
+      }
+    }
+  </style>
+</head>
+
+<!-- Default active language set to JA (Japanese) -->
+<body data-lang="ja">
+
+  <!-- Main Site Wrapper Container -->
+  <div class="site-wrapper">
+
+    <!-- ======================================================================
+         TOP NAVIGATION BAR (FULL EDGE-TO-EDGE FLUID HEADER)
+         ====================================================================== -->
+    <header class="nav-bar-outer">
+      <nav class="nav-bar">
+        <!-- Pushed to the far left: Official Brand Logo Lockup + Navigation Menu Items -->
+        <div class="nav-left-group">
+          <a href="#" class="brand-logo-lockup">
+            <div class="logo-icon-wrap">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Red Squircle Badge (Primary Red #B81D24) -->
+                <rect width="44" height="44" rx="10.5" fill="#B81D24"/>
+                <!-- Outer White Arc with bottom opening -->
+                <path d="M 14.8 30.5 A 10.8 10.8 0 1 1 29.2 30.5" stroke="#FFFFFF" stroke-width="3.8" stroke-linecap="round" fill="none"/>
+                <!-- Inner Solid White Circle Disc -->
+                <circle cx="22" cy="22" r="6.6" fill="#FFFFFF"/>
+                <!-- Solid Red Center Dot -->
+                <circle cx="22" cy="22" r="2.3" fill="#B81D24"/>
+              </svg>
+            </div>
+            <span class="logo-main-text">DEEP PLATE</span>
+          </a>
+
+          <ul class="nav-menu" id="nav-menu">
+            <li><a href="#about" onclick="closeMobileMenu()"><span class="lang-jp">ブランド</span><span class="lang-kr">브랜드소개</span><span class="lang-en">About</span></a></li>
+            <li><a href="#curations" onclick="closeMobileMenu()"><span class="lang-jp">キュレーション</span><span class="lang-kr">큐레이션</span><span class="lang-en">Curations</span></a></li>
+            <li><a href="#how-it-works" onclick="closeMobileMenu()"><span class="lang-jp">ご利用の流れ</span><span class="lang-kr">이용방법</span><span class="lang-en">How It Works</span></a></li>
+            <li><a href="#faq" onclick="closeMobileMenu()"><span class="lang-jp">よくある質問</span><span class="lang-kr">자주 묻는 질문</span><span class="lang-en">FAQ</span></a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSecRGifi_E5Nb2aGVafjh7PZq2UU0b06VlEUtcnDSnUVRtfJA/viewform?usp=header" target="_blank" rel="noopener noreferrer" onclick="closeMobileMenu()"><span class="lang-jp">お問い合わせ</span><span class="lang-kr">1:1 신청하기</span><span class="lang-en">Apply Now</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Pushed to the far right: Language Switcher -->
+        <div class="nav-right-group">
+          <!-- Smooth Trilingual Switcher Toggle (JA / KO / EN) -->
+          <div class="lang-switcher-wrap">
+            <button class="lang-btn active" id="btn-ja" onclick="switchLanguage('ja')">JA</button>
+            <button class="lang-btn" id="btn-ko" onclick="switchLanguage('ko')">KO</button>
+            <button class="lang-btn" id="btn-en" onclick="switchLanguage('en')">EN</button>
+          </div>
+
+          <!-- Mobile Menu Toggle Button -->
+          <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Menu">
+            ☰
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ======================================================================
+         HERO BANNER SECTION (DYNAMICALLY CHANGING SLIDE HEADLINES)
+         ====================================================================== -->
+    <section class="hero-banner">
+      <!-- 3-Image Hero Background Carousel Slider -->
+      <div class="hero-slider">
+        <div class="hero-slide active" id="slide-0">
+          <img src="assets/images/hero_architecture.png" alt="Deep Plate Architecture Dining 1" class="hero-bg-img">
+        </div>
+        <div class="hero-slide" id="slide-1">
+          <img src="assets/images/hero_slide_2.png" alt="Deep Plate Architecture Dining 2" class="hero-bg-img">
+        </div>
+        <div class="hero-slide" id="slide-2">
+          <img src="assets/images/hero_slide_3.png" alt="Deep Plate Architecture Dining 3" class="hero-bg-img">
+        </div>
+      </div>
+
+      <!-- Hero Content Inner Overlay (Centered Alignment) -->
+      <div class="hero-content-inner">
+        <div class="hero-main-info">
+          
+          <div class="hero-meta-year">
+            <span>2026</span> / <span>CULINARY ARCHIVE</span>
+          </div>
+
+          <!-- Dynamic Centered Hero Title -->
+          <h1 class="hero-title">
+            <!-- Slide 1 Title (01 / 03) -->
+            <div class="hero-title-slide active" id="hero-title-slide-0">
+              <span class="lang-jp">
+                <span style="display: inline-block; white-space: nowrap;">明洞、弘大...</span><br>
+                <span style="display: inline-block; white-space: nowrap;">今回も<span class="text-crimson-emphasis">そこ</span>に行きますか？</span>
+              </span>
+              <span class="lang-kr">
+                <span style="display: inline-block; white-space: nowrap;">명동, 홍대...</span><br>
+                <span style="display: inline-block; white-space: nowrap;">이번에도 <span class="text-crimson-emphasis">거기</span> 가시게요?</span>
+              </span>
+              <span class="lang-en">
+                <span style="display: inline-block; white-space: nowrap;">Myeongdong, Hongdae...</span><br>
+                <span style="display: inline-block; white-space: nowrap;">Are you going <span class="text-crimson-emphasis">there</span> again?</span>
+              </span>
+            </div>
+
+            <!-- Slide 2 Title (02 / 03) -->
+            <div class="hero-title-slide" id="hero-title-slide-1">
+              <span class="lang-jp">
+                <span style="display: inline-block; white-space: nowrap;"><span class="text-crimson-emphasis">韓国人の友達</span>がいてこそ知る穴場、</span><br>
+                <span style="display: inline-block; white-space: nowrap;">私たちが代わりにお教えします</span>
+              </span>
+              <span class="lang-kr">
+                <span style="display: inline-block; white-space: nowrap;"><span class="text-crimson-emphasis">한국인 친구</span>가 있어야 아는 곳,</span><br>
+                <span style="display: inline-block; white-space: nowrap;">저희가 대신 알려드릴게요</span>
+              </span>
+              <span class="lang-en">
+                <span style="display: inline-block; white-space: nowrap;">Spots only <span class="text-crimson-emphasis">Korean friends</span> know</span><br>
+                <span style="display: inline-block; white-space: nowrap;">we'll guide you directly</span>
+              </span>
+            </div>
+
+            <!-- Slide 3 Title (03 / 03) -->
+            <div class="hero-title-slide" id="hero-title-slide-2">
+              <span class="lang-jp">
+                <span style="display: inline-block; white-space: nowrap;">本物のローカルグルメを、</span><br>
+                <span style="display: inline-block; white-space: nowrap;">私たちが<span class="text-crimson-emphasis">直接</span>足で探しました</span>
+              </span>
+              <span class="lang-kr">
+                <span style="display: inline-block; white-space: nowrap;">진짜는,</span><br>
+                <span style="display: inline-block; white-space: nowrap;">저희가 <span class="text-crimson-emphasis">직접</span> 발로 찾았습니다</span>
+              </span>
+              <span class="lang-en">
+                <span style="display: inline-block; white-space: nowrap;">Real local gems,</span><br>
+                <span style="display: inline-block; white-space: nowrap;">curated <span class="text-crimson-emphasis">directly</span> on foot by us</span>
+              </span>
+            </div>
+          </h1>
+
+          <!-- Center-Aligned Hero Curation Button -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSecRGifi_E5Nb2aGVafjh7PZq2UU0b06VlEUtcnDSnUVRtfJA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="hero-see-project">
+            <span class="lang-jp">キュレーションを申し込む</span>
+            <span class="lang-kr">1:1 큐레이션 신청하기</span>
+            <span class="lang-en">Apply for 1:1 Curation</span>
+            <span class="red-arrow">→</span>
+          </a>
+
+          <!-- Centered Carousel Navigation Controls -->
+          <div class="hero-controls-wrap">
+            <button class="slide-nav-btn" onclick="prevSlide()" title="Previous Slide">←</button>
+            <div class="hero-slide-num">
+              <span id="current-slide-num">01</span><span>/ 03</span>
+            </div>
+            <button class="slide-nav-btn" onclick="nextSlide()" title="Next Slide">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toss-Style Bouncing Scroll Down Indicator -->
+      <a href="#about" class="scroll-down-indicator" aria-label="Scroll Down">
+        <span class="lang-jp">SCROLL DOWN</span>
+        <span class="lang-kr">SCROLL DOWN</span>
+        <span class="lang-en">SCROLL DOWN</span>
+        <div class="scroll-chevron">
+          <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 1L7 7L13 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+    </section>
+
+    <!-- ======================================================================
+         2. PROBLEM + SOLUTION SECTION (100% CENTER-ALIGNED IN ALL LANGUAGES)
+         ====================================================================== -->
+    <section class="problem-solution-section" id="about">
+      <div class="content-container">
+        <div class="problem-solution-card fade-up">
+          
+          <!-- Elegant Minimalist Header Divider Tag -->
+          <div class="problem-tag-wrap">
+            <span class="problem-tag-line"></span>
+            <span class="problem-tag">PROBLEM & SOLUTION</span>
+            <span class="problem-tag-line"></span>
+          </div>
+          
+          <!-- Subtitle (소제목) -->
+          <h2 class="problem-subtitle">
+            <span class="lang-jp">韓国、<span class="text-crimson-emphasis">今回が二度目以上なら</span></span>
+            <span class="lang-kr">한국, <span class="text-crimson-emphasis">이번이 두 번째 이상이라면</span></span>
+            <span class="lang-en">If this is your <span class="text-crimson-emphasis">second time or more in Korea</span></span>
+          </h2>
+
+          <!-- Body (본문) -->
+          <p class="problem-body">
+            <span class="lang-jp">明洞、弘大はもう行った。 <span class="accent-bold">今回は広告もタイアップもない、本物のローカルグルメが知りたい。</span></span>
+            <span class="lang-kr">명동, 홍대는 이미 다 가봤다. <span class="accent-bold">이번엔 광고도, 협찬도 없는 진짜 로컬 맛집이 궁금하다.</span></span>
+            <span class="lang-en">You've already been to Myeongdong and Hongdae. <span class="accent-bold">This time, you want real local gems with zero ads or sponsored posts.</span></span>
+          </p>
+
+          <!-- 100% Center-Aligned Solution Banner -->
+          <div class="problem-highlight-inline">
+            <span class="highlight-badge-mini">DEEP PLATE SOLUTION</span>
+            <div class="highlight-text">
+              <span class="lang-jp">本物のローカルグルメを、私たちが足で探しました</span>
+              <span class="lang-kr">진짜는, 저희가 직접 발로 찾았습니다</span>
+              <span class="lang-en">Real local gems, curated on foot directly by us</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         MAIN CONTENT: RESPONSIVE ASYMMETRIC GRID (4-CARD GALLERY)
+         ====================================================================== -->
+    <div class="content-container">
+      <main class="main-grid-container" id="curations">
+
+        <!-- LEFT COLUMN -->
+        <div class="left-column">
+          
+          <!-- Left Intro Block -->
+          <div class="left-intro-block fade-up">
+            <span class="tag-since">Since 2026</span>
+            <h2 class="left-main-heading">
+              <span class="lang-jp">
+                2回目の訪問からは、<br>
+                <span class="text-crimson-emphasis single-line-red">観光客ではなく地元の人のように食べる。</span>
+              </span>
+              <span class="lang-kr">
+                두 번째 방문부터는,<br>
+                <span class="text-crimson-emphasis single-line-red">관광객이 아니라 동네 사람처럼 먹는다.</span>
+              </span>
+              <span class="lang-en">
+                From your second visit,<br>
+                <span class="text-crimson-emphasis single-line-red">eat like a local, not a tourist.</span>
+              </span>
+            </h2>
+          </div>
+
+          <!-- Asymmetric Card 1 (Dining Space) -->
+          <article class="asymmetric-card card-1 fade-up delay-1">
+            <div class="card-img-wrap">
+              <img src="assets/images/dining_space.png" alt="Best Products Dining Space" class="card-img">
+            </div>
+            <div class="card-caption-block">
+              <span class="card-category">CURATED SPACES</span>
+              <h3 class="card-title">
+                <span class="lang-jp">厳選されたローカルグルメ空間</span>
+                <span class="lang-kr">엄선된 로컬 다이닝 공간</span>
+                <span class="lang-en">Curated Local Dining Spaces</span>
+              </h3>
+            </div>
+          </article>
+
+          <!-- Asymmetric Card 2 (Seoul Local Stories - Coming Soon) -->
+          <article class="asymmetric-card card-2 fade-up delay-2">
+            <div class="card-img-wrap">
+              <img src="assets/images/hidden_alley.png" alt="Seoul Local Stories Coming Soon" class="card-img">
+            </div>
+            <div class="card-caption-block">
+              <span class="card-category">COMING SOON — SEOUL STORY</span>
+              <h3 class="card-title">
+                <span class="lang-jp">まもなく始まります — ソウルローカルグルメストーリー</span>
+                <span class="lang-kr">곧 시작합니다 — 서울 로컬 맛집 이야기</span>
+                <span class="lang-en">Coming Soon — Seoul Local Culinary Stories</span>
+              </h3>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- RIGHT COLUMN (Staggered Offset) -->
+        <div class="right-column">
+
+          <!-- Asymmetric Card 3 (Direct On-Site Verification) -->
+          <article class="asymmetric-card card-3 fade-up delay-1">
+            <div class="card-img-wrap">
+              <img src="assets/images/tea_eatery.png" alt="Verified Directly On Site" class="card-img">
+            </div>
+            <div class="card-caption-block">
+              <span class="card-category">DIRECT VERIFICATION</span>
+              <h3 class="card-title">
+                <span class="lang-jp">実際に足を運んで確認します</span>
+                <span class="lang-kr">직접 다녀와서 확인합니다</span>
+                <span class="lang-en">Verified Directly in Person on Site</span>
+              </h3>
+            </div>
+          </article>
+
+          <!-- Asymmetric Card 4 (Local Eatery Scene) -->
+          <article class="asymmetric-card card-4 fade-up delay-2">
+            <div class="card-img-wrap">
+              <img src="assets/images/korean_local_eatery.png" alt="Solution for Dreams" class="card-img">
+            </div>
+            <div class="card-caption-block">
+              <span class="card-category">1:1 CURATION</span>
+              <h3 class="card-title">
+                <span class="lang-jp">あなただけの1:1グルメソリューション</span>
+                <span class="lang-kr">맞춤형 1:1 로컬 맛집 솔루션</span>
+                <span class="lang-en">Personalized 1:1 Culinary Curation</span>
+              </h3>
+            </div>
+          </article>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- ======================================================================
+         DEDICATED FULL-WIDTH HORIZONTAL APPLICATION & HOW IT WORKS SECTION
+         ====================================================================== -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="content-container">
+        <div class="how-it-works-card fade-up">
+          <div class="how-header-wrap">
+            <h3 class="how-block-title">
+              <span class="lang-jp">ご利用の流れ</span>
+              <span class="lang-kr">이용 방법</span>
+              <span class="lang-en">How It Works</span>
+            </h3>
+            <p class="how-block-subtitle">
+              <span class="lang-jp">広告なし、私たちが実際に足を運んで1:1でキュレーションします。</span>
+              <span class="lang-kr">광고 없이, 저희가 직접 다녀와서 1:1로 큐레이션해드립니다.</span>
+              <span class="lang-en">Zero ads — curated 1:1 directly by us on site.</span>
+            </p>
+          </div>
+
+          <!-- Horizontal 3 Steps Grid Layout -->
+          <div class="step-horizontal-grid">
+            <div class="step-item-wide fade-up delay-1" data-step-num="01">
+              <span class="step-badge">STEP 01</span>
+              <div class="step-info-title">
+                <span class="lang-jp">アンケート入力</span>
+                <span class="lang-kr">질문지 작성 (취향 분석)</span>
+                <span class="lang-en">Fill Out Questionnaire</span>
+              </div>
+              <div class="step-info-desc">
+                <span class="lang-jp">好み、位置、日程、アレルギーまで細かく入力</span>
+                <span class="lang-kr">취향, 위치, 일정 및 알레르기 등 세밀 질문지 작성</span>
+                <span class="lang-en">Specify your tastes, preferred location, schedule, and allergies.</span>
+              </div>
+            </div>
+
+            <div class="step-item-wide fade-up delay-2" data-step-num="02">
+              <span class="step-badge">STEP 02</span>
+              <div class="step-info-title">
+                <span class="lang-jp">決済完了 (1:1マッチング)</span>
+                <span class="lang-kr">결제 완료 (취향 1:1 매칭)</span>
+                <span class="lang-en">Payment & 1:1 Matching</span>
+              </div>
+              <div class="step-info-desc">
+                <span class="lang-jp">お好みに合わせて一つひとつマッチングします</span>
+                <span class="lang-kr">취향에 맞춰 직접 하나하나 매칭해드립니다</span>
+                <span class="lang-en">Hand-picked one by one tailored to your personal taste.</span>
+              </div>
+            </div>
+
+            <div class="step-item-wide fade-up delay-3" data-step-num="03">
+              <span class="step-badge">STEP 03</span>
+              <div class="step-info-title">
+                <span class="lang-jp">1〜2日以内にレポート受信 (マップ連動)</span>
+                <span class="lang-kr">1~2일 내 맞춤 리포트 수신 (구글 맵 연동)</span>
+                <span class="lang-en">Receive Custom Report in 1–2 Days</span>
+              </div>
+              <div class="step-info-desc">
+                <span class="lang-jp">Googleマップ直接連動リンク付きのカスタムレポートを1〜2日以内にお送りします</span>
+                <span class="lang-kr">구글 맵 직접 연동 링크가 포함된 맞춤형 리포트를 1~2일 내로 보내드립니다</span>
+                <span class="lang-en">Custom report with direct Google Maps links delivered within 1–2 days.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Wide Crimson Pill CTA Button (Perfectly Center Aligned) -->
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSecRGifi_E5Nb2aGVafjh7PZq2UU0b06VlEUtcnDSnUVRtfJA/viewform?usp=header" target="_blank" rel="noopener noreferrer" class="cta-button-wide fade-up delay-4">
+            <span class="lang-jp">今すぐ1:1ローカルキュレーションを申し込む</span>
+            <span class="lang-kr">지금 1:1 로컬 큐레이션 신청하기</span>
+            <span class="lang-en">Apply for Your 1:1 Curation Report</span>
+            <span class="red-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         DEDICATED FAQ ACCORDION SECTION (ULTRA-CLEAN LINE DESIGN)
+         ====================================================================== -->
+    <section class="faq-section" id="faq">
+      <div class="content-container">
+        <div class="faq-container-inner fade-up">
+          
+          <div class="faq-header-wrap">
+            <span class="faq-tag-mini">FAQ & HELP</span>
+            <h3 class="faq-block-title">
+              <span class="lang-jp">よくあるご質問</span>
+              <span class="lang-kr">자주 묻는 질문</span>
+              <span class="lang-en">Frequently Asked Questions</span>
+            </h3>
+          </div>
+
+          <div class="faq-accordion-list">
+
+            <!-- Q1: Turnaround Time -->
+            <div class="faq-item active">
+              <button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="true">
+                <span class="faq-q-text">
+                  <span class="faq-q-num">01</span>
+                  <span class="lang-jp">申し込んでからキュレーションを受け取るまでどのくらいかかりますか？</span>
+                  <span class="lang-kr">신청 후 큐레이션을 받기까지 얼마나 걸리나요?</span>
+                  <span class="lang-en">How long does it take to receive the curation after applying?</span>
+                </span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7 7L13 1" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="faq-answer-content">
+                <div class="faq-answer-text">
+                  <span class="lang-jp">お申し込み完了後、1〜2日以内にお届けいたします。お急ぎの場合はお知らせいただければ、可能な限り対応させていただきます。</span>
+                  <span class="lang-kr">신청 완료 후 1~2일 내로 전달드립니다. 급하신 경우 말씀해주시면 최대한 맞춰드릴게요.</span>
+                  <span class="lang-en">You will receive your report within 1–2 days after completing your request. If you are in a hurry, please let us know and we will accommodate your schedule.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q2: Language Barrier -->
+            <div class="faq-item">
+              <button class="faq-btn" onclick="toggleFaq(this)">
+                <span class="faq-q-text">
+                  <span class="faq-q-num">02</span>
+                  <span class="lang-jp">韓国語が話せなくても申し込めますか？</span>
+                  <span class="lang-kr">한국어를 못해도 신청할 수 있나요?</span>
+                  <span class="lang-en">Can I apply even if I don't speak Korean?</span>
+                </span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7 7L13 1" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="faq-answer-content">
+                <div class="faq-answer-text">
+                  <span class="lang-jp">はい、全く問題ありません。お申込書やレポートはすべて各言語に対応しており、LINE・Instagram・メールで気軽にご相談いただけます。</span>
+                  <span class="lang-kr">네, 전혀 문제 없습니다. 신청서와 결과물 모두 각 언어에 맞게 안내드리고, 라인·인스타그램·이메일로 편하게 소통하실 수 있어요.</span>
+                  <span class="lang-en">Yes, absolutely! Both the request form and the final report are available in your preferred language. You can easily communicate with us via LINE, Instagram, or Email.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q3: Payment Method -->
+            <div class="faq-item">
+              <button class="faq-btn" onclick="toggleFaq(this)">
+                <span class="faq-q-text">
+                  <span class="faq-q-num">03</span>
+                  <span class="lang-jp">お支払いはどのように行いますか？</span>
+                  <span class="lang-kr">결제는 어떻게 하나요?</span>
+                  <span class="lang-en">How do I make the payment?</span>
+                </span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7 7L13 1" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="faq-answer-content">
+                <div class="faq-answer-text">
+                  <span class="lang-jp">お申込書の送信後、LINE・Instagram DM・メールにて決済リンクをお送りします。ご決済の確認後、キュレーションを開始いたします。</span>
+                  <span class="lang-kr">신청서 제출 후 라인, 인스타그램 DM 또는 이메일로 결제 링크를 보내드립니다. 결제 확인 후 큐레이션을 시작해요.</span>
+                  <span class="lang-en">After submitting the form, we will send you a payment link via LINE, Instagram DM, or Email. Curation begins immediately upon payment confirmation.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Q4: Waiting Registration Support -->
+            <div class="faq-item">
+              <button class="faq-btn" onclick="toggleFaq(this)">
+                <span class="faq-q-text">
+                  <span class="faq-q-num">04</span>
+                  <span class="lang-jp">現地でウェイティング登録（順番待ち）ができない場合はどうすればいいですか？</span>
+                  <span class="lang-kr">현장에서 웨이팅 등록이 안 되면 어떻게 하나요?</span>
+                  <span class="lang-en">What if I can't register for the waiting list on site?</span>
+                </span>
+                <span class="faq-icon-toggle">
+                  <svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L7 7L13 1" stroke="#111111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="faq-answer-content">
+                <div class="faq-answer-text">
+                  <span class="lang-jp">韓国の電話番号がなく順番待ち登録が難しい場合は、お気軽にご連絡ください。私たちが直接サポートいたします。</span>
+                  <span class="lang-kr">한국 번호가 없어서 대기 등록이 어려우신 경우, 편하게 연락 주시면 저희가 직접 도와드려요.</span>
+                  <span class="lang-en">If you don't have a Korean phone number and struggle with waiting registration apps, simply reach out to us and we'll assist you directly.</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SITE FOOTER
+         ====================================================================== -->
+    <footer class="site-footer" id="contact">
+      <div class="footer-left">
+        © Deep Plate 2026. by Culinary Archive
+      </div>
+
+      <div class="footer-center">
+        SEOUL / TOKYO / hello@deepplate.co
+      </div>
+
+      <div class="footer-right">
+        <a href="#">INSTAGRAM</a>
+        <a href="#">TWITTER</a>
+        <a href="#">FACEBOOK</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript for Responsive Navigation, Trilingual Switcher & Hero Slider -->
+  <script>
+    /* Always force scroll position to top (0,0) on page refresh */
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    window.addEventListener('beforeunload', function() {
+      window.scrollTo(0, 0);
+    });
+
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        window.scrollTo(0, 0);
+      }, 10);
+    });
+
+    /* Mobile Menu Toggle */
+    function toggleMobileMenu() {
+      const menu = document.getElementById('nav-menu');
+      if (menu) menu.classList.toggle('active');
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('nav-menu');
+      if (menu) menu.classList.remove('active');
+    }
+
+    /* Language Switcher with User Choice Saving */
+    function switchLanguage(lang, isUserChoice = true) {
+      let target = 'ja';
+      if (lang === 'ko' || lang === 'kr') target = 'ko';
+      else if (lang === 'en') target = 'en';
+      else target = 'ja';
+      
+      document.body.setAttribute('data-lang', target);
+      
+      if (isUserChoice) {
+        localStorage.setItem('deepplate_user_lang', target);
+      }
+      
+      const btnJa = document.getElementById('btn-ja');
+      const btnKo = document.getElementById('btn-ko');
+      const btnEn = document.getElementById('btn-en');
+      if (btnJa) btnJa.classList.toggle('active', target === 'ja');
+      if (btnKo) btnKo.classList.toggle('active', target === 'ko');
+      if (btnEn) btnEn.classList.toggle('active', target === 'en');
+    }
+
+    /* Smart Automatic Language Detection & Localization Engine */
+    function autoDetectLanguage() {
+      // 1. Check if user previously saved a preferred language
+      const savedLang = localStorage.getItem('deepplate_user_lang');
+      if (savedLang) {
+        switchLanguage(savedLang, false);
+        return;
+      }
+
+      // 2. Detect Browser / OS Language (Instant response, zero delay)
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      let detectedLang = 'ja'; // Default to Japanese
+
+      if (browserLang.startsWith('ja')) {
+        detectedLang = 'ja';
+      } else if (browserLang.startsWith('ko')) {
+        detectedLang = 'ko';
+      } else if (browserLang.startsWith('en')) {
+        detectedLang = 'en';
+      } else {
+        detectedLang = 'en'; // Global fallback
+      }
+
+      switchLanguage(detectedLang, false);
+
+      // 3. Geolocation IP Detection Fallback (For Japanese/Global travelers)
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+          if (data && data.country_code && !localStorage.getItem('deepplate_user_lang')) {
+            const country = data.country_code.toUpperCase();
+            if (country === 'JP') switchLanguage('ja', false);
+            else if (country === 'KR') switchLanguage('ko', false);
+          }
+        })
+        .catch(() => {
+          // Graceful fallback to browser language
+        });
+    }
+
+    // Run Automatic Language Detection on Page Load
+    autoDetectLanguage();
+
+    /* Dynamic Trilingual Hero Carousel Slider */
+    let currentSlide = 0;
+    const totalSlides = 3;
+
+    function updateSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      
+      // Synchronize active slide image AND active slide title text together!
+      for (let i = 0; i < totalSlides; i++) {
+        const slideEl = document.getElementById(`slide-${i}`);
+        const titleEl = document.getElementById(`hero-title-slide-${i}`);
+        
+        if (slideEl) slideEl.classList.toggle('active', i === currentSlide);
+        if (titleEl) titleEl.classList.toggle('active', i === currentSlide);
+      }
+      
+      // Update slide number indicator (01 / 03, 02 / 03, 03 / 03)
+      document.getElementById('current-slide-num').textContent = `0${currentSlide + 1}`;
+    }
+
+    function nextSlide() {
+      updateSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      updateSlide(currentSlide - 1);
+    }
+
+    // Auto Play Hero Carousel every 5 seconds
+    let slideInterval = setInterval(nextSlide, 5000);
+    const heroBannerEl = document.querySelector('.hero-banner');
+    if (heroBannerEl) {
+      heroBannerEl.addEventListener('mouseenter', () => clearInterval(slideInterval));
+      heroBannerEl.addEventListener('mouseleave', () => {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+      });
+    }
+
+    // Set initial language explicitly to JA
+    switchLanguage('ja');
+
+    /* FAQ Accordion Toggle Function */
+    function toggleFaq(button) {
+      const item = button.closest('.faq-item');
+      const isAlreadyActive = item.classList.contains('active');
+      
+      document.querySelectorAll('.faq-item').forEach(el => {
+        el.classList.remove('active');
+        const btn = el.querySelector('.faq-btn');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+      
+      if (!isAlreadyActive) {
+        item.classList.add('active');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    /* Luxury Editorial Observer for Smooth Subtle Scroll Motion */
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -20px 0px',
+        threshold: 0.05
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
