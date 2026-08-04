@@ -1,0 +1,67 @@
+import { formUrl, languageLabels } from '../data/content.jsx';
+
+const anchors = ['about', 'curations', 'how-it-works', 'faq'];
+
+function BrandMark() {
+  return (
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+      <rect width="44" height="44" rx="10.5" fill="#B81D24" />
+      <path d="M 14.8 30.5 A 10.8 10.8 0 1 1 29.2 30.5" stroke="#FFFFFF" strokeWidth="3.8" strokeLinecap="round" />
+      <circle cx="22" cy="22" r="6.6" fill="#FFFFFF" />
+      <circle cx="22" cy="22" r="2.3" fill="#B81D24" />
+    </svg>
+  );
+}
+
+export default function Header({ content, lang, menuOpen, onLanguage, onMenu }) {
+  return (
+    <header className="nav-bar-outer">
+      <nav className="nav-bar" aria-label="Primary navigation">
+        <div className="nav-left-group">
+          <a href="#top" className="brand-logo-lockup" aria-label="Deep Plate home">
+            <div className="logo-icon-wrap"><BrandMark /></div>
+            <span className="logo-main-text">DEEP PLATE</span>
+          </a>
+
+          <ul className={`nav-menu${menuOpen ? ' active' : ''}`} id="nav-menu">
+            {content.nav.map((label, index) => (
+              <li key={anchors[index]}>
+                <a href={`#${anchors[index]}`} onClick={() => onMenu(false)}>{label}</a>
+              </li>
+            ))}
+            <li>
+              <a href={formUrl} target="_blank" rel="noopener noreferrer" onClick={() => onMenu(false)}>{content.apply}</a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="nav-right-group">
+          <div className="lang-switcher-wrap" role="group" aria-label="Language">
+            {Object.keys(languageLabels).map((code) => (
+              <button
+                key={code}
+                className={`lang-btn${lang === code ? ' active' : ''}`}
+                type="button"
+                aria-pressed={lang === code}
+                aria-label={languageLabels[code]}
+                onClick={() => onLanguage(code)}
+              >
+                {code === 'ko' ? 'KO' : code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+          <button
+            className="mobile-menu-btn"
+            type="button"
+            aria-label="Toggle menu"
+            aria-controls="nav-menu"
+            aria-expanded={menuOpen}
+            onClick={() => onMenu(!menuOpen)}
+          >
+            {menuOpen ? '×' : '☰'}
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+}
