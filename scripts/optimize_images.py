@@ -6,6 +6,15 @@ from PIL import Image
 SOURCE_DIR = Path("assets/images")
 OUTPUT_DIR = Path("public/images")
 WIDTHS = (640, 1024)
+HERO_IMAGES = {
+    "hero_architecture",
+    "hero_slide_2",
+    "hero_slide_3",
+}
+QUALITY_PROFILES = {
+    "hero": {"avif": 72, "webp": 88},
+    "card": {"avif": 64, "webp": 84},
+}
 IMAGE_NAMES = (
     "dining_space",
     "hero_architecture",
@@ -19,6 +28,7 @@ IMAGE_NAMES = (
 
 def optimize_image(name: str) -> None:
     source_path = SOURCE_DIR / f"{name}.png"
+    profile = QUALITY_PROFILES["hero" if name in HERO_IMAGES else "card"]
     with Image.open(source_path) as source:
         source = source.convert("RGB")
         for width in WIDTHS:
@@ -31,13 +41,13 @@ def optimize_image(name: str) -> None:
             resized.save(
                 OUTPUT_DIR / f"{name}-{width}.avif",
                 format="AVIF",
-                quality=55,
+                quality=profile["avif"],
                 speed=6,
             )
             resized.save(
                 OUTPUT_DIR / f"{name}-{width}.webp",
                 format="WEBP",
-                quality=78,
+                quality=profile["webp"],
                 method=6,
             )
 
