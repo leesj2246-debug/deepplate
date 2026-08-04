@@ -1,14 +1,11 @@
-import diningSpace from '../../assets/images/dining_space.png';
-import hiddenAlley from '../../assets/images/hidden_alley.png';
-import teaEatery from '../../assets/images/tea_eatery.png';
-import koreanLocalEatery from '../../assets/images/korean_local_eatery.png';
 import { formUrl } from '../data/content.jsx';
+import ResponsiveImage from './ResponsiveImage.jsx';
 
 const cards = [
-  { image: diningSpace, category: 'CURATED SPACES', alt: 'Curated local dining space' },
-  { image: hiddenAlley, category: 'COMING SOON — SEOUL STORY', alt: 'A hidden alley in Seoul' },
-  { image: teaEatery, category: 'DIRECT VERIFICATION', alt: 'A local tea eatery verified in person' },
-  { image: koreanLocalEatery, category: '1:1 CURATION', alt: 'A Korean local eatery' },
+  { image: 'dining_space', category: 'CURATED SPACES', alt: 'Curated local dining space' },
+  { image: 'hidden_alley', category: 'COMING SOON — SEOUL STORY', alt: 'A hidden alley in Seoul' },
+  { image: 'tea_eatery', category: 'DIRECT VERIFICATION', alt: 'A local tea eatery verified in person' },
+  { image: 'korean_local_eatery', category: '1:1 CURATION', alt: 'A Korean local eatery' },
 ];
 
 export function ProblemSolution({ content }) {
@@ -33,7 +30,12 @@ export function CurationGrid({ content }) {
   const renderCard = (index) => (
     <article className={`asymmetric-card card-${index + 1} fade-up delay-${index % 2 + 1}`} key={cards[index].category}>
       <div className="card-img-wrap">
-        <img src={cards[index].image} alt={cards[index].alt} className="card-img" loading="lazy" decoding="async" />
+        <ResponsiveImage
+          name={cards[index].image}
+          alt={cards[index].alt}
+          className="card-img"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
       </div>
       <div className="card-caption-block">
         <span className="card-category">{cards[index].category}</span>
