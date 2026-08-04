@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
-import heroArchitecture from '../../assets/images/hero_architecture.png';
-import heroSlide2 from '../../assets/images/hero_slide_2.png';
-import heroSlide3 from '../../assets/images/hero_slide_3.png';
 import { formUrl } from '../data/content.jsx';
+import ResponsiveImage from './ResponsiveImage.jsx';
 
-const images = [heroArchitecture, heroSlide2, heroSlide3];
+const images = ['hero_architecture', 'hero_slide_2', 'hero_slide_3'];
 
 function HeroHeadline({ item }) {
   if (item.second) {
@@ -55,13 +53,13 @@ export default function Hero({ content }) {
       <div className="hero-slider" aria-live="off">
         {images.map((src, index) => (
           <div className={`hero-slide${index === current ? ' active' : ''}`} key={src} aria-hidden={index !== current}>
-            <img
-              src={src}
+            <ResponsiveImage
+              name={src}
               alt=""
               className="hero-bg-img"
+              sizes="100vw"
               loading={index === 0 ? 'eager' : 'lazy'}
               fetchPriority={index === 0 ? 'high' : 'auto'}
-              decoding="async"
             />
           </div>
         ))}
