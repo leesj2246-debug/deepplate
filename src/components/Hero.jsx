@@ -27,19 +27,18 @@ function HeroHeadline({ item }) {
 export default function Hero({ content, labels }) {
   const [current, setCurrent] = useState(0);
   const [interactionPaused, setInteractionPaused] = useState(false);
-  const [manualPaused, setManualPaused] = useState(false);
 
   const move = (direction) => setCurrent((value) => (value + direction + images.length) % images.length);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (interactionPaused || manualPaused || reducedMotion) return undefined;
+    if (interactionPaused || reducedMotion) return undefined;
     const timer = window.setInterval(
       () => setCurrent((value) => (value + 1) % images.length),
       5000,
     );
     return () => window.clearInterval(timer);
-  }, [interactionPaused, manualPaused]);
+  }, [interactionPaused]);
 
   return (
     <section
@@ -84,15 +83,6 @@ export default function Hero({ content, labels }) {
               <span>{String(current + 1).padStart(2, '0')}</span><span>/ 03</span>
             </div>
             <button className="slide-nav-btn" type="button" onClick={() => move(1)} aria-label={labels.nextSlide}>→</button>
-            <button
-              className="slide-nav-btn"
-              type="button"
-              aria-label={manualPaused ? labels.resumeCarousel : labels.pauseCarousel}
-              aria-pressed={manualPaused}
-              onClick={() => setManualPaused((value) => !value)}
-            >
-              <span aria-hidden="true">{manualPaused ? '▶' : 'Ⅱ'}</span>
-            </button>
           </div>
         </div>
       </div>
