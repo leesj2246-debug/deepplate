@@ -13,12 +13,12 @@ function BrandMark() {
   );
 }
 
-export default function Header({ content, lang, menuOpen, onLanguage, onMenu }) {
+export default function Header({ content, labels, lang, menuOpen, onLanguage, onMenu }) {
   return (
     <header className="nav-bar-outer">
-      <nav className="nav-bar" aria-label="Primary navigation">
+      <nav className="nav-bar" aria-label={labels.primaryNav}>
         <div className="nav-left-group">
-          <a href="#top" className="brand-logo-lockup" aria-label="Deep Plate home">
+          <a href="#top" className="brand-logo-lockup" aria-label={labels.home}>
             <div className="logo-icon-wrap"><BrandMark /></div>
             <span className="logo-main-text">DEEP PLATE</span>
           </a>
@@ -36,7 +36,7 @@ export default function Header({ content, lang, menuOpen, onLanguage, onMenu }) 
         </div>
 
         <div className="nav-right-group">
-          <div className="lang-switcher-wrap" role="group" aria-label="Language">
+          <div className="lang-switcher-wrap" role="group" aria-label={labels.language}>
             {Object.keys(languageLabels).map((code) => (
               <button
                 key={code}
@@ -53,7 +53,7 @@ export default function Header({ content, lang, menuOpen, onLanguage, onMenu }) 
           <button
             className="mobile-menu-btn"
             type="button"
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? labels.closeMenu : labels.openMenu}
             aria-controls="nav-menu"
             aria-expanded={menuOpen}
             onClick={() => onMenu(!menuOpen)}

@@ -1,9 +1,54 @@
-export const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSecRGifi_E5Nb2aGVafjh7PZq2UU0b06VlEUtcnDSnUVRtfJA/viewform?usp=header';
+export const formUrl = 'https://tally.so/r/ZjAlQe';
 
 export const languageLabels = {
   ja: '日本語',
   ko: '한국어',
   en: 'English',
+};
+
+export const uiLabels = {
+  ja: {
+    skip: 'メインコンテンツへ移動',
+    primaryNav: 'メインナビゲーション',
+    home: 'Deep Plate ホーム',
+    language: '言語',
+    openMenu: 'メニューを開く',
+    closeMenu: 'メニューを閉じる',
+    carousel: 'Deep Plateのハイライト',
+    previousSlide: '前のスライド',
+    nextSlide: '次のスライド',
+    slide: 'スライド',
+    of: '/',
+    scroll: '紹介へ移動',
+  },
+  ko: {
+    skip: '본문으로 바로가기',
+    primaryNav: '주요 메뉴',
+    home: 'Deep Plate 홈',
+    language: '언어',
+    openMenu: '메뉴 열기',
+    closeMenu: '메뉴 닫기',
+    carousel: 'Deep Plate 주요 콘텐츠',
+    previousSlide: '이전 슬라이드',
+    nextSlide: '다음 슬라이드',
+    slide: '슬라이드',
+    of: '/',
+    scroll: '브랜드 소개로 이동',
+  },
+  en: {
+    skip: 'Skip to main content',
+    primaryNav: 'Primary navigation',
+    home: 'Deep Plate home',
+    language: 'Language',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    carousel: 'Deep Plate highlights',
+    previousSlide: 'Previous slide',
+    nextSlide: 'Next slide',
+    slide: 'Slide',
+    of: 'of',
+    scroll: 'Scroll to introduction',
+  },
 };
 
 export const copy = {

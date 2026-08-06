@@ -24,31 +24,34 @@ function HeroHeadline({ item }) {
   );
 }
 
-export default function Hero({ content }) {
+export default function Hero({ content, labels }) {
   const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
+  const [interactionPaused, setInteractionPaused] = useState(false);
 
   const move = (direction) => setCurrent((value) => (value + direction + images.length) % images.length);
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (paused || reducedMotion) return undefined;
-    const timer = window.setInterval(() => move(1), 5000);
+    if (interactionPaused || reducedMotion) return undefined;
+    const timer = window.setInterval(
+      () => setCurrent((value) => (value + 1) % images.length),
+      5000,
+    );
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, [interactionPaused]);
 
   return (
     <section
       className="hero-banner"
       id="top"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
+      onMouseEnter={() => setInteractionPaused(true)}
+      onMouseLeave={() => setInteractionPaused(false)}
+      onFocusCapture={() => setInteractionPaused(true)}
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+        if (!event.currentTarget.contains(event.relatedTarget)) setInteractionPaused(false);
       }}
       aria-roledescription="carousel"
-      aria-label="Deep Plate highlights"
+      aria-label={labels.carousel}
     >
       <div className="hero-slider" aria-live="off">
         {images.map((src, index) => (
@@ -75,16 +78,16 @@ export default function Hero({ content }) {
             {content.apply}<span className="red-arrow" aria-hidden="true">→</span>
           </a>
           <div className="hero-controls-wrap">
-            <button className="slide-nav-btn" type="button" onClick={() => move(-1)} aria-label="Previous slide">←</button>
-            <div className="hero-slide-num" aria-label={`Slide ${current + 1} of ${images.length}`}>
+            <button className="slide-nav-btn" type="button" onClick={() => move(-1)} aria-label={labels.previousSlide}>←</button>
+            <div className="hero-slide-num" aria-label={`${labels.slide} ${current + 1} ${labels.of} ${images.length}`}>
               <span>{String(current + 1).padStart(2, '0')}</span><span>/ 03</span>
             </div>
-            <button className="slide-nav-btn" type="button" onClick={() => move(1)} aria-label="Next slide">→</button>
+            <button className="slide-nav-btn" type="button" onClick={() => move(1)} aria-label={labels.nextSlide}>→</button>
           </div>
         </div>
       </div>
 
-      <a href="#about" className="scroll-down-indicator" aria-label="Scroll to introduction">
+      <a href="#about" className="scroll-down-indicator" aria-label={labels.scroll}>
         <span>SCROLL DOWN</span><span className="scroll-chevron" aria-hidden="true">⌄</span>
       </a>
     </section>
