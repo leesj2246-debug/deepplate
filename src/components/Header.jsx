@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { formUrl, languageLabels } from '../data/content.jsx';
+import { languageLabels } from '../data/content.jsx';
 
 const anchors = ['about', 'curations', 'how-it-works', 'faq'];
 
@@ -14,7 +14,7 @@ function BrandMark() {
   );
 }
 
-export default function Header({ content, labels, lang, onLanguage }) {
+export default function Header({ content, labels, lang, onLanguage, onApply }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -33,7 +33,16 @@ export default function Header({ content, labels, lang, onLanguage }) {
               </li>
             ))}
             <li>
-              <a href={formUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>{content.apply}</a>
+              <button
+                type="button"
+                className="nav-apply-button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  onApply();
+                }}
+              >
+                {content.apply}
+              </button>
             </li>
           </ul>
         </div>

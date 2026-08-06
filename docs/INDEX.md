@@ -4,6 +4,7 @@
 
 | 작업 | 읽을 문서 |
 | --- | --- |
+| 사업·브랜드·콘텐츠 기준 확인 | `MASTER_BRIEF.md` |
 | 현재 링크·브랜치·연동 상태 확인 | `PROJECT_STATE.md` |
 | 기술 또는 제품 방향을 결정·검토 | `DECISIONS.md` |
 | GitHub PR 및 Vercel 배포 | `runbooks/deploy.md` |
