@@ -1,4 +1,4 @@
-export const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSecRGifi_E5Nb2aGVafjh7PZq2UU0b06VlEUtcnDSnUVRtfJA/viewform?usp=header';
+export const formUrl = 'https://tally.so/r/ZjAlQe';
 
 export const languageLabels = {
   ja: '日本語',

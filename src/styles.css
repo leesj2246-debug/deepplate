@@ -1242,6 +1242,17 @@
         min-height: 100vh;
       }
 
+      .hero-content-inner {
+        padding-inline: 18px;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 10vw, 2.6rem);
+        line-height: 1.28;
+        min-height: 0;
+        margin-bottom: 32px;
+      }
+
       .problem-solution-section {
         padding: 50px 14px 20px 14px;
       }
@@ -1293,6 +1304,14 @@
 .hero-line {
   display: inline-block;
   white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .hero-line {
+    display: block;
+    max-width: 100%;
+    white-space: normal;
+  }
 }
 
 .problem-subtitle em,
