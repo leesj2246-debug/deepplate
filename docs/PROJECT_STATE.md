@@ -5,7 +5,7 @@
 ## 저장소와 배포
 
 - GitHub: `https://github.com/leesj2246-debug/deepplate`
-- 현재 작업 브랜치: `codex/react-modularization`
+- 현재 작업 브랜치: `codex/align-master-brief`
 - 프로덕션: `https://deepplate.vercel.app/`
 - Vercel 프로젝트명: `deepplate`
 - 로컬 Vercel 연결 정보는 `.vercel/`에 있으며 저장소에 커밋하지 않는다.
@@ -17,6 +17,8 @@
 - 언어 선택은 브라우저 `localStorage`의 `deepplate_user_lang`에 저장된다.
 - 페이지 섹션은 `src/components/sections/`, 재사용 가능한 상태 동작은 `src/hooks/`에서 관리한다.
 - 프로덕션 빌드 명령은 `npm run build`이다.
+- 공식 운영 거점은 서울이며 `Culinary Archive`, 도쿄, X, `hello@deepplate.co`는 확인된 공식 표기로 사용하지 않는다.
+- Instagram은 계정의 정확한 공개 URL을 확인한 뒤 웹사이트에 연결한다.
 
 ## 설문과 응답
 
@@ -31,3 +33,8 @@
 
 - `src/data/content.jsx`의 `formUrl`은 공개 Tally 링크를 사용한다.
 - 배포 전 세 언어 CTA가 동일한 공개 Tally 링크를 여는지 확인한다.
+
+## 기준 문서
+
+- 사업·브랜드·콘텐츠의 현재 기준은 `docs/MASTER_BRIEF.md`이다.
+- 확정되지 않은 가격, 결제 수단, PDF 형식, 연락 채널을 외부 문구에서 단정하지 않는다.

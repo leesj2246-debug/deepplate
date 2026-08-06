@@ -23,7 +23,10 @@ export default function Header({ content, labels, lang, onLanguage }) {
         <div className="nav-left-group">
           <a href="#top" className="brand-logo-lockup" aria-label={labels.home}>
             <div className="logo-icon-wrap"><BrandMark /></div>
-            <span className="logo-main-text">DEEP PLATE</span>
+            <span className="logo-wordmark">
+              <span className="logo-main-text">DEEP PLATE</span>
+              <span className="logo-korean-text">딥 플레이트</span>
+            </span>
           </a>
 
           <ul className={`nav-menu${menuOpen ? ' active' : ''}`} id="nav-menu">

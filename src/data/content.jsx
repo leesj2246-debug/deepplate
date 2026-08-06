@@ -76,9 +76,9 @@ export const copy = {
     faqTitle: 'よくあるご質問',
     faqs: [
       ['申し込んでからキュレーションを受け取るまでどのくらいかかりますか？', 'お申し込み完了後、1〜2日以内にお届けいたします。お急ぎの場合はお知らせいただければ、可能な限り対応させていただきます。'],
-      ['韓国語が話せなくても申し込めますか？', 'はい、全く問題ありません。お申込書やレポートはすべて各言語に対応しており、LINE・Instagram・メールで気軽にご相談いただけます。'],
-      ['お支払いはどのように行いますか？', 'お申込書の送信後、LINE・Instagram DM・メールにて決済リンクをお送りします。ご決済の確認後、キュレーションを開始いたします。'],
-      ['現地でウェイティング登録（順番待ち）ができない場合はどうすればいいですか？', '韓国の電話番号がなく順番待ち登録が難しい場合は、お気軽にご連絡ください。私たちが直接サポートいたします。'],
+      ['韓国語が話せなくても申し込めますか？', 'はい、問題ありません。お申込書と結果は韓国語・日本語・英語でご案内します。'],
+      ['お支払いはどのように行いますか？', 'お申込書の送信後、ご希望の連絡方法で利用可能な決済方法をご案内します。決済確認後にキュレーションを開始します。'],
+      ['現地でウェイティング登録（順番待ち）ができない場合はどうすればいいですか？', '韓国の電話番号がなく登録が難しい場合はご連絡ください。自動代行ではなく、可能な範囲で個別にご案内します。'],
     ],
   },
   ko: {
@@ -105,9 +105,9 @@ export const copy = {
     faqTitle: '자주 묻는 질문',
     faqs: [
       ['신청 후 큐레이션을 받기까지 얼마나 걸리나요?', '신청 완료 후 1~2일 내로 전달드립니다. 급하신 경우 말씀해주시면 최대한 맞춰드릴게요.'],
-      ['한국어를 못해도 신청할 수 있나요?', '네, 전혀 문제 없습니다. 신청서와 결과물 모두 각 언어에 맞게 안내드리고, 라인·인스타그램·이메일로 편하게 소통하실 수 있어요.'],
-      ['결제는 어떻게 하나요?', '신청서 제출 후 라인, 인스타그램 DM 또는 이메일로 결제 링크를 보내드립니다. 결제 확인 후 큐레이션을 시작해요.'],
-      ['현장에서 웨이팅 등록이 안 되면 어떻게 하나요?', '한국 번호가 없어서 대기 등록이 어려우신 경우, 편하게 연락 주시면 저희가 직접 도와드려요.'],
+      ['한국어를 못해도 신청할 수 있나요?', '네, 문제 없습니다. 신청서와 결과물은 한국어·일본어·영어로 안내해드립니다.'],
+      ['결제는 어떻게 하나요?', '신청서 제출 후 선택하신 연락 방법으로 현재 이용 가능한 결제 수단을 안내드립니다. 결제 확인 후 큐레이션을 시작해요.'],
+      ['현장에서 웨이팅 등록이 안 되면 어떻게 하나요?', '한국 번호가 없어 등록이 어려우시면 연락해주세요. 자동 대행이 아닌 수동 방식으로, 가능한 범위에서 개별 안내해드립니다.'],
     ],
   },
   en: {
@@ -134,9 +134,9 @@ export const copy = {
     faqTitle: 'Frequently Asked Questions',
     faqs: [
       ['How long does it take to receive the curation after applying?', 'You will receive your report within 1–2 days after completing your request. If you are in a hurry, please let us know and we will accommodate your schedule.'],
-      ["Can I apply even if I don't speak Korean?", 'Yes, absolutely! Both the request form and the final report are available in your preferred language. You can easily communicate with us via LINE, Instagram, or Email.'],
-      ['How do I make the payment?', 'After submitting the form, we will send you a payment link via LINE, Instagram DM, or Email. Curation begins immediately upon payment confirmation.'],
-      ["What if I can't register for the waiting list on site?", "If you don't have a Korean phone number and struggle with waiting registration apps, simply reach out to us and we'll assist you directly."],
+      ["Can I apply even if I don't speak Korean?", 'Yes. The request form and results are available in Korean, Japanese, and English.'],
+      ['How do I make the payment?', 'After you submit the form, we will share the currently available payment option through your preferred contact method. Curation begins after payment is confirmed.'],
+      ["What if I can't register for the waiting list on site?", "If you don't have a Korean phone number, contact us for individual guidance where possible. This is a manual support service, not automated waiting registration."],
     ],
   },
 };

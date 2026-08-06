@@ -57,7 +57,7 @@ export default function Hero({ content, labels }) {
 
       <div className="hero-content-inner">
         <div className="hero-main-info">
-          <div className="hero-meta-year"><span>2026</span> / <span>CULINARY ARCHIVE</span></div>
+          <div className="hero-meta-year"><span>2026</span> / <span>SEOUL</span></div>
           <h1 className="hero-title" aria-live="polite">
             <div className="hero-title-slide active"><HeroHeadline item={content.hero[current]} /></div>
           </h1>
