@@ -5,7 +5,7 @@
 ## 저장소와 배포
 
 - GitHub: `https://github.com/leesj2246-debug/deepplate`
-- 현재 작업 브랜치: `codex/polish-quality`
+- 현재 작업 브랜치: `codex/react-modularization`
 - 프로덕션: `https://deepplate.vercel.app/`
 - Vercel 프로젝트명: `deepplate`
 - 로컬 Vercel 연결 정보는 `.vercel/`에 있으며 저장소에 커밋하지 않는다.
@@ -15,6 +15,7 @@
 - React 19 + Vite 8 단일 페이지 랜딩 사이트.
 - 지원 언어는 한국어, 일본어, 영어이다.
 - 언어 선택은 브라우저 `localStorage`의 `deepplate_user_lang`에 저장된다.
+- 페이지 섹션은 `src/components/sections/`, 재사용 가능한 상태 동작은 `src/hooks/`에서 관리한다.
 - 프로덕션 빌드 명령은 `npm run build`이다.
 
 ## 설문과 응답

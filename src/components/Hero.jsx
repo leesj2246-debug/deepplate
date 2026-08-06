@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import { formUrl } from '../data/content.jsx';
+import useAutoCarousel from '../hooks/useAutoCarousel.js';
 import ResponsiveImage from './ResponsiveImage.jsx';
 
 const images = ['hero_architecture', 'hero_slide_2', 'hero_slide_3'];
@@ -25,30 +25,17 @@ function HeroHeadline({ item }) {
 }
 
 export default function Hero({ content, labels }) {
-  const [current, setCurrent] = useState(0);
-  const [interactionPaused, setInteractionPaused] = useState(false);
-
-  const move = (direction) => setCurrent((value) => (value + direction + images.length) % images.length);
-
-  useEffect(() => {
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (interactionPaused || reducedMotion) return undefined;
-    const timer = window.setInterval(
-      () => setCurrent((value) => (value + 1) % images.length),
-      5000,
-    );
-    return () => window.clearInterval(timer);
-  }, [interactionPaused]);
+  const { current, move, setPaused } = useAutoCarousel(images.length);
 
   return (
     <section
       className="hero-banner"
       id="top"
-      onMouseEnter={() => setInteractionPaused(true)}
-      onMouseLeave={() => setInteractionPaused(false)}
-      onFocusCapture={() => setInteractionPaused(true)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setInteractionPaused(false);
+        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
       }}
       aria-roledescription="carousel"
       aria-label={labels.carousel}
