@@ -22,9 +22,9 @@
 - 기술 구성: React 19, Vite 8, JavaScript.
 - 개발 서버: `npm run dev`
 - 프로덕션 빌드: `npm run build`
-- 코드 변경 후 최소한 `npm run build`를 실행한다.
+- 코드 변경 후 `npm run lint`, `npm run test`, `npm run build`를 순서대로 실행한다.
 - 화면 변경은 데스크톱과 모바일에서 주요 CTA, 언어 전환, 이미지 품질, 콘솔 오류를 확인한다.
-- 별도 테스트 스크립트가 없으므로 테스트가 필요하면 먼저 현재 `package.json`을 확인한다.
+- 검증 명령이 바뀌었을 가능성이 있으면 실제 `package.json`을 우선 확인한다.
 
 ## Git, PR, 배포
 
