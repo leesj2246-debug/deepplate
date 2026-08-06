@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { formUrl, languageLabels } from '../data/content.jsx';
 
 const anchors = ['about', 'curations', 'how-it-works', 'faq'];
@@ -13,7 +14,9 @@ function BrandMark() {
   );
 }
 
-export default function Header({ content, labels, lang, menuOpen, onLanguage, onMenu }) {
+export default function Header({ content, labels, lang, onLanguage }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <header className="nav-bar-outer">
       <nav className="nav-bar" aria-label={labels.primaryNav}>
@@ -26,11 +29,11 @@ export default function Header({ content, labels, lang, menuOpen, onLanguage, on
           <ul className={`nav-menu${menuOpen ? ' active' : ''}`} id="nav-menu">
             {content.nav.map((label, index) => (
               <li key={anchors[index]}>
-                <a href={`#${anchors[index]}`} onClick={() => onMenu(false)}>{label}</a>
+                <a href={`#${anchors[index]}`} onClick={() => setMenuOpen(false)}>{label}</a>
               </li>
             ))}
             <li>
-              <a href={formUrl} target="_blank" rel="noopener noreferrer" onClick={() => onMenu(false)}>{content.apply}</a>
+              <a href={formUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>{content.apply}</a>
             </li>
           </ul>
         </div>
@@ -56,7 +59,7 @@ export default function Header({ content, labels, lang, menuOpen, onLanguage, on
             aria-label={menuOpen ? labels.closeMenu : labels.openMenu}
             aria-controls="nav-menu"
             aria-expanded={menuOpen}
-            onClick={() => onMenu(!menuOpen)}
+            onClick={() => setMenuOpen((isOpen) => !isOpen)}
           >
             {menuOpen ? '×' : '☰'}
           </button>
