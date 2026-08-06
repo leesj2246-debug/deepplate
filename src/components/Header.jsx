@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { formUrl, languageLabels } from '../data/content.jsx';
+import { languageLabels } from '../data/content.jsx';
 
 const anchors = ['about', 'curations', 'how-it-works', 'faq'];
 
@@ -14,7 +14,7 @@ function BrandMark() {
   );
 }
 
-export default function Header({ content, labels, lang, onLanguage }) {
+export default function Header({ content, labels, lang, onLanguage, onApply }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -23,10 +23,7 @@ export default function Header({ content, labels, lang, onLanguage }) {
         <div className="nav-left-group">
           <a href="#top" className="brand-logo-lockup" aria-label={labels.home}>
             <div className="logo-icon-wrap"><BrandMark /></div>
-            <span className="logo-wordmark">
-              <span className="logo-main-text">DEEP PLATE</span>
-              <span className="logo-korean-text">딥 플레이트</span>
-            </span>
+            <span className="logo-main-text">DEEP PLATE</span>
           </a>
 
           <ul className={`nav-menu${menuOpen ? ' active' : ''}`} id="nav-menu">
@@ -36,7 +33,16 @@ export default function Header({ content, labels, lang, onLanguage }) {
               </li>
             ))}
             <li>
-              <a href={formUrl} target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>{content.apply}</a>
+              <button
+                type="button"
+                className="nav-apply-button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  onApply();
+                }}
+              >
+                {content.apply}
+              </button>
             </li>
           </ul>
         </div>

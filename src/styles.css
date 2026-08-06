@@ -90,7 +90,7 @@
       transition: transform 0.3s var(--ease-smooth);
     }
     
-    a:hover .red-arrow, .btn:hover .red-arrow {
+    a:hover .red-arrow, button:hover .red-arrow, .btn:hover .red-arrow {
       transform: translateX(6px);
     }
 
@@ -170,20 +170,6 @@
       font-family: var(--font-kr);
     }
 
-    .logo-wordmark {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .logo-korean-text {
-      color: rgba(255, 255, 255, 0.68);
-      font-size: 0.64rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      line-height: 1;
-    }
-
     .nav-menu {
       display: flex;
       gap: 24px;
@@ -191,7 +177,8 @@
       align-items: center;
     }
 
-    .nav-menu a {
+    .nav-menu a,
+    .nav-menu button {
       color: rgba(255, 255, 255, 0.88);
       text-decoration: none;
       font-size: 0.88rem;
@@ -203,7 +190,15 @@
       transition: all 0.3s var(--ease-smooth);
     }
 
-    .nav-menu a:hover {
+    .nav-menu button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .nav-menu a:hover,
+    .nav-menu button:hover {
       color: #FFFFFF;
       background: rgba(255, 255, 255, 0.15);
     }
@@ -458,6 +453,8 @@
       border: 1px solid var(--accent-red);
       box-shadow: 0 8px 26px rgba(184, 29, 36, 0.5);
       transition: all 0.3s var(--ease-smooth);
+      cursor: pointer;
+      font-family: inherit;
     }
 
     .hero-see-project .red-arrow {
@@ -974,6 +971,105 @@
       color: var(--accent-red);
     }
 
+    /* ========================================================================
+       IN-SITE TALLY FORM
+       ======================================================================== */
+    .form-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(18, 17, 16, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .form-modal-panel {
+      width: min(960px, 100%);
+      height: min(900px, calc(100dvh - 48px));
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-lg);
+      background: var(--bg-cream);
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.32);
+    }
+
+    .form-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-solid);
+      background: var(--bg-cream);
+    }
+
+    .form-modal-header h2 {
+      margin: 2px 0 0;
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    .form-modal-eyebrow {
+      display: block;
+      color: var(--accent-red);
+      font-size: 0.66rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+    }
+
+    .form-modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+
+    .form-modal-actions a {
+      color: #555555;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .form-modal-actions a:hover {
+      color: var(--accent-red);
+    }
+
+    .form-modal-close {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border-solid);
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: var(--text-black);
+      cursor: pointer;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .form-modal-close:hover,
+    .form-modal-close:focus-visible {
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      outline: none;
+    }
+
+    .form-modal-iframe {
+      width: 100%;
+      min-height: 0;
+      flex: 1;
+      border: 0;
+      background: #FFFFFF;
+    }
+
     /* ==========================================================================
        LUXURY EDITORIAL ANIMATION & MOTION SYSTEM (DEEP PLATE BRANDING)
        ========================================================================== */
@@ -1232,7 +1328,8 @@
         display: flex;
       }
 
-      .nav-menu a {
+      .nav-menu a,
+      .nav-menu button {
         width: 100%;
         font-size: 1rem;
         padding: 10px 14px;
@@ -1299,6 +1396,30 @@
         gap: 16px;
         text-align: center;
         padding: 30px 18px;
+      }
+
+      .form-modal-backdrop {
+        padding: 0;
+      }
+
+      .form-modal-panel {
+        width: 100%;
+        height: 100dvh;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .form-modal-header {
+        gap: 12px;
+        padding: 14px 16px;
+      }
+
+      .form-modal-header h2 {
+        font-size: 0.96rem;
+      }
+
+      .form-modal-actions a {
+        display: none;
       }
     }
 /* React architecture additions */

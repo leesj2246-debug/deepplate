@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Footer from './components/Footer.jsx';
+import CurationFormModal from './components/CurationFormModal.jsx';
 import CurationGrid from './components/sections/CurationGrid.jsx';
 import FaqSection from './components/sections/FaqSection.jsx';
 import HowItWorks from './components/sections/HowItWorks.jsx';
@@ -11,6 +13,7 @@ import useScrollReveal from './hooks/useScrollReveal.js';
 
 export default function App() {
   const [lang, setLang] = useLanguage();
+  const [formOpen, setFormOpen] = useState(false);
   useScrollReveal();
 
   const content = copy[lang];
@@ -24,15 +27,21 @@ export default function App() {
         labels={labels}
         lang={lang}
         onLanguage={setLang}
+        onApply={() => setFormOpen(true)}
       />
       <main id="main-content">
-        <Hero content={content} labels={labels} />
+        <Hero content={content} labels={labels} onApply={() => setFormOpen(true)} />
         <ProblemSolution content={content} />
         <CurationGrid content={content} />
-        <HowItWorks content={content} />
+        <HowItWorks content={content} onApply={() => setFormOpen(true)} />
         <FaqSection content={content} />
       </main>
       <Footer />
+      <CurationFormModal
+        labels={labels}
+        open={formOpen}
+        onClose={() => setFormOpen(false)}
+      />
     </div>
   );
 }

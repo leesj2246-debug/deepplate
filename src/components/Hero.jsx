@@ -1,4 +1,3 @@
-import { formUrl } from '../data/content.jsx';
 import useAutoCarousel from '../hooks/useAutoCarousel.js';
 import ResponsiveImage from './ResponsiveImage.jsx';
 
@@ -24,7 +23,7 @@ function HeroHeadline({ item }) {
   );
 }
 
-export default function Hero({ content, labels }) {
+export default function Hero({ content, labels, onApply }) {
   const { current, move, setPaused } = useAutoCarousel(images.length);
 
   return (
@@ -61,9 +60,9 @@ export default function Hero({ content, labels }) {
           <h1 className="hero-title" aria-live="polite">
             <div className="hero-title-slide active"><HeroHeadline item={content.hero[current]} /></div>
           </h1>
-          <a href={formUrl} target="_blank" rel="noopener noreferrer" className="hero-see-project">
+          <button type="button" className="hero-see-project" onClick={onApply}>
             {content.apply}<span className="red-arrow" aria-hidden="true">→</span>
-          </a>
+          </button>
           <div className="hero-controls-wrap">
             <button className="slide-nav-btn" type="button" onClick={() => move(-1)} aria-label={labels.previousSlide}>←</button>
             <div className="hero-slide-num" aria-label={`${labels.slide} ${current + 1} ${labels.of} ${images.length}`}>

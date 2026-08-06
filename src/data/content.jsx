@@ -1,4 +1,5 @@
 export const formUrl = 'https://tally.so/r/ZjAlQe';
+export const formEmbedUrl = 'https://tally.so/embed/ZjAlQe?alignLeft=1&hideTitle=1&transparentBackground=1';
 
 export const languageLabels = {
   ja: '日本語',
@@ -20,6 +21,9 @@ export const uiLabels = {
     slide: 'スライド',
     of: '/',
     scroll: '紹介へ移動',
+    formTitle: '1:1キュレーション申込書',
+    closeForm: '申込書を閉じる',
+    openExternal: '別のタブで開く',
   },
   ko: {
     skip: '본문으로 바로가기',
@@ -34,6 +38,9 @@ export const uiLabels = {
     slide: '슬라이드',
     of: '/',
     scroll: '브랜드 소개로 이동',
+    formTitle: '1:1 큐레이션 신청서',
+    closeForm: '신청서 닫기',
+    openExternal: '새 탭에서 열기',
   },
   en: {
     skip: 'Skip to main content',
@@ -48,6 +55,9 @@ export const uiLabels = {
     slide: 'Slide',
     of: 'of',
     scroll: 'Scroll to introduction',
+    formTitle: '1:1 Curation Request',
+    closeForm: 'Close request form',
+    openExternal: 'Open in new tab',
   },
 };
 

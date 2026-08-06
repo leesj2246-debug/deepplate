@@ -1,6 +1,4 @@
-import { formUrl } from '../../data/content.jsx';
-
-export default function HowItWorks({ content }) {
+export default function HowItWorks({ content, onApply }) {
   return (
     <section className="how-it-works-section" id="how-it-works">
       <div className="content-container">
@@ -18,9 +16,9 @@ export default function HowItWorks({ content }) {
               </div>
             ))}
           </div>
-          <a href={formUrl} target="_blank" rel="noopener noreferrer" className="cta-button-wide fade-up delay-4">
+          <button type="button" className="cta-button-wide fade-up delay-4" onClick={onApply}>
             {content.applyWide}<span className="red-arrow" aria-hidden="true">→</span>
-          </a>
+          </button>
         </div>
       </div>
     </section>

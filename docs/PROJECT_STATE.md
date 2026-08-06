@@ -31,8 +31,9 @@
 
 ## 랜딩 페이지 설문 연결
 
-- `src/data/content.jsx`의 `formUrl`은 공개 Tally 링크를 사용한다.
-- 배포 전 세 언어 CTA가 동일한 공개 Tally 링크를 여는지 확인한다.
+- `src/data/content.jsx`의 `formEmbedUrl`은 사이트 내부 설문 모달에서 사용하는 Tally 임베드 링크다.
+- `formUrl`은 임베드가 불편하거나 로드되지 않을 때 새 탭에서 여는 대체 링크다.
+- 배포 전 세 언어 CTA가 동일한 사이트 내부 설문을 열고, 닫기·ESC·모바일 스크롤이 정상 동작하는지 확인한다.
 
 ## 기준 문서
 
