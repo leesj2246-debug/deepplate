@@ -54,12 +54,14 @@ export default function CurationFormModal({ labels, open, onClose }) {
             </button>
           </div>
         </header>
-        <iframe
-          className="form-modal-iframe"
-          src={formEmbedUrl}
-          title={labels.formTitle}
-          loading="eager"
-        />
+        <div className="form-modal-body">
+          <iframe
+            className="form-modal-iframe"
+            src={formEmbedUrl}
+            title={labels.formTitle}
+            loading="eager"
+          />
+        </div>
       </section>
     </div>
   );

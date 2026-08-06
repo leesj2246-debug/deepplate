@@ -1,5 +1,5 @@
 export const formUrl = 'https://tally.so/r/ZjAlQe';
-export const formEmbedUrl = 'https://tally.so/embed/ZjAlQe?alignLeft=1&hideTitle=1&transparentBackground=1';
+export const formEmbedUrl = 'https://tally.so/embed/ZjAlQe?hideTitle=1&transparentBackground=1';
 
 export const languageLabels = {
   ja: '日本語',
