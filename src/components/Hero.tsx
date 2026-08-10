@@ -42,8 +42,6 @@ export default function Hero({ content, labels, onApply }: HeroProps) {
     <section
       className="hero-banner"
       id="top"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={(event) => {
         const nextTarget = event.relatedTarget;
