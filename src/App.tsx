@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import Header from './components/Header.jsx';
-import Hero from './components/Hero.jsx';
-import Footer from './components/Footer.jsx';
-import CurationFormModal from './components/CurationFormModal.jsx';
-import CurationGrid from './components/sections/CurationGrid.jsx';
-import FaqSection from './components/sections/FaqSection.jsx';
-import HowItWorks from './components/sections/HowItWorks.jsx';
-import ProblemSolution from './components/sections/ProblemSolution.jsx';
-import { copy, uiLabels } from './data/content.jsx';
-import useLanguage from './hooks/useLanguage.js';
-import useScrollReveal from './hooks/useScrollReveal.js';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Footer from './components/Footer';
+import CurationFormModal from './components/CurationFormModal';
+import CurationGrid from './components/sections/CurationGrid';
+import FaqSection from './components/sections/FaqSection';
+import HowItWorks from './components/sections/HowItWorks';
+import ProblemSolution from './components/sections/ProblemSolution';
+import { copy, uiLabels } from './data/content';
+import useLanguage from './hooks/useLanguage';
+import useScrollReveal from './hooks/useScrollReveal';
 
 export default function App() {
   const [lang, setLang] = useLanguage();

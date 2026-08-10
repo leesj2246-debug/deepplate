@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { copy, languageLabels, uiLabels } from './content.jsx';
+import { copy, supportedLanguages, uiLabels } from './content';
 
-const languages = Object.keys(languageLabels);
+const languages = supportedLanguages;
 
 describe('다국어 콘텐츠 계약', () => {
   it('지원 언어가 동일한 콘텐츠와 UI 키를 제공한다', () => {

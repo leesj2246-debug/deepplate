@@ -1,18 +1,18 @@
 # Deep Plate 현재 상태
 
-마지막 확인일: 2026-08-06
+마지막 확인일: 2026-08-10
 
 ## 저장소와 배포
 
 - GitHub: `https://github.com/leesj2246-debug/deepplate`
-- 현재 작업 브랜치: `codex/align-master-brief`
+- 현재 작업 브랜치: `codex/typescript-migration`
 - 프로덕션: `https://deepplate.vercel.app/`
 - Vercel 프로젝트명: `deepplate`
 - 로컬 Vercel 연결 정보는 `.vercel/`에 있으며 저장소에 커밋하지 않는다.
 
 ## 애플리케이션
 
-- React 19 + Vite 8 단일 페이지 랜딩 사이트.
+- React 19 + TypeScript + Vite 8 단일 페이지 랜딩 사이트.
 - 지원 언어는 한국어, 일본어, 영어이다.
 - 언어 선택은 브라우저 `localStorage`의 `deepplate_user_lang`에 저장된다.
 - 페이지 섹션은 `src/components/sections/`, 재사용 가능한 상태 동작은 `src/hooks/`에서 관리한다.
@@ -31,7 +31,7 @@
 
 ## 랜딩 페이지 설문 연결
 
-- `src/data/content.jsx`의 `formEmbedUrl`은 사이트 내부 설문 모달에서 사용하는 Tally 임베드 링크다.
+- `src/data/content.tsx`의 `formEmbedUrl`은 사이트 내부 설문 모달에서 사용하는 Tally 임베드 링크다.
 - `formUrl`은 임베드가 불편하거나 로드되지 않을 때 새 탭에서 여는 대체 링크다.
 - 배포 전 세 언어 CTA가 동일한 사이트 내부 설문을 열고, 닫기·ESC·모바일 스크롤이 정상 동작하는지 확인한다.
 

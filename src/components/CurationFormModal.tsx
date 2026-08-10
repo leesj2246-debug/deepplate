@@ -1,15 +1,24 @@
 import { useEffect, useRef } from 'react';
-import { formEmbedUrl, formUrl } from '../data/content.jsx';
+import { formEmbedUrl, formUrl } from '../data/content';
+import type { UiLabels } from '../data/content';
 
-export default function CurationFormModal({ labels, open, onClose }) {
-  const closeButtonRef = useRef(null);
+interface CurationFormModalProps {
+  labels: UiLabels;
+  open: boolean;
+  onClose: () => void;
+}
+
+export default function CurationFormModal({ labels, open, onClose }: CurationFormModalProps) {
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return undefined;
 
-    const previousActiveElement = document.activeElement;
+    const previousActiveElement = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
     const previousOverflow = document.body.style.overflow;
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
     };
 

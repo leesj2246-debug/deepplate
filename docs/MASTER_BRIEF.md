@@ -82,7 +82,7 @@
 
 ## 7. 랜딩 페이지 구조
 
-- React 19와 Vite 8 기반 단일 페이지 애플리케이션이다.
+- React 19, TypeScript와 Vite 8 기반 단일 페이지 애플리케이션이다.
 - 주요 흐름은 Header, Hero, Problem & Solution, Curation Archive, How It Works, FAQ, Footer로 구성한다.
 - 섹션 수를 네 개로 강제하지 않고 고객이 신청을 결정하는 데 필요한 정보만 유지한다.
 - 모든 CTA는 동일한 Tally 설문을 사이트 내부 모달로 연다. 새 탭 링크는 대체 경로로만 제공한다.
@@ -124,6 +124,7 @@
 ## 12. 현재 상태
 
 - [x] React 랜딩 페이지 구현
+- [x] TypeScript 기반 타입 검사 적용
 - [x] 한국어·일본어·영어 지원
 - [x] Tally 공개 설문 연결
 - [x] Google Sheets 원본·운영 관리 흐름 구성

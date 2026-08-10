@@ -4,12 +4,13 @@ import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
-export default [
+export default tseslint.config(
   { ignores: ['dist'] },
-  js.configs.recommended,
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{ts,tsx}'],
+    extends: [js.configs.recommended, ...tseslint.configs.recommended],
     languageOptions: {
       ecmaVersion: 'latest',
       globals: globals.browser,
@@ -32,9 +33,9 @@ export default [
     },
   },
   {
-    files: ['**/*.test.{js,jsx}', 'src/test/**/*.js'],
+    files: ['**/*.test.{ts,tsx}', 'src/test/**/*.ts'],
     languageOptions: {
       globals: globals.browser,
     },
   },
-];
+);

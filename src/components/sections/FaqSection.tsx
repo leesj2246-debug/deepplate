@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import type { LocalizedContent } from '../../data/content';
 
-export default function FaqSection({ content }) {
+interface FaqSectionProps {
+  content: LocalizedContent;
+}
+
+export default function FaqSection({ content }: FaqSectionProps) {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export default function useScrollReveal() {
   useEffect(() => {
-    const elements = document.querySelectorAll('.fade-up');
+    const elements = document.querySelectorAll<HTMLElement>('.fade-up');
 
     if (!('IntersectionObserver' in window)) {
       elements.forEach((element) => element.classList.add('active'));

@@ -1,4 +1,11 @@
-export default function HowItWorks({ content, onApply }) {
+import type { LocalizedContent } from '../../data/content';
+
+interface HowItWorksProps {
+  content: LocalizedContent;
+  onApply: () => void;
+}
+
+export default function HowItWorks({ content, onApply }: HowItWorksProps) {
   return (
     <section className="how-it-works-section" id="how-it-works">
       <div className="content-container">

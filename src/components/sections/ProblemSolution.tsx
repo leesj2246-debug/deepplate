@@ -1,4 +1,10 @@
-export default function ProblemSolution({ content }) {
+import type { LocalizedContent } from '../../data/content';
+
+interface ProblemSolutionProps {
+  content: LocalizedContent;
+}
+
+export default function ProblemSolution({ content }: ProblemSolutionProps) {
   return (
     <section className="problem-solution-section" id="about">
       <div className="content-container">

@@ -9,7 +9,7 @@ afterEach(() => {
 
 Object.defineProperty(window, 'matchMedia', {
   configurable: true,
-  value: vi.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation((query: string) => ({
     matches: false,
     media: query,
     onchange: null,

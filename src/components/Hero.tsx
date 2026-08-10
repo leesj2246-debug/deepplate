@@ -1,10 +1,21 @@
-import useAutoCarousel from '../hooks/useAutoCarousel.js';
-import ResponsiveImage from './ResponsiveImage.jsx';
+import type { HeroItem, LocalizedContent, UiLabels } from '../data/content';
+import useAutoCarousel from '../hooks/useAutoCarousel';
+import ResponsiveImage from './ResponsiveImage';
 
-const images = ['hero_architecture', 'hero_slide_2', 'hero_slide_3'];
+const images = ['hero_architecture', 'hero_slide_2', 'hero_slide_3'] as const;
 
-function HeroHeadline({ item }) {
-  if (item.second) {
+interface HeroHeadlineProps {
+  item: HeroItem;
+}
+
+interface HeroProps {
+  content: LocalizedContent;
+  labels: UiLabels;
+  onApply: () => void;
+}
+
+function HeroHeadline({ item }: HeroHeadlineProps) {
+  if ('second' in item) {
     return (
       <>
         <span className="hero-line">{item.firstBefore}<span className="text-crimson-emphasis">{item.firstAccent}</span>{item.firstAfter}</span>
@@ -23,8 +34,9 @@ function HeroHeadline({ item }) {
   );
 }
 
-export default function Hero({ content, labels, onApply }) {
+export default function Hero({ content, labels, onApply }: HeroProps) {
   const { current, move, setPaused } = useAutoCarousel(images.length);
+  const activeHeadline = content.hero[current] ?? content.hero[0];
 
   return (
     <section
@@ -34,7 +46,10 @@ export default function Hero({ content, labels, onApply }) {
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false);
+        const nextTarget = event.relatedTarget;
+        if (!(nextTarget instanceof Node) || !event.currentTarget.contains(nextTarget)) {
+          setPaused(false);
+        }
       }}
       aria-roledescription="carousel"
       aria-label={labels.carousel}
@@ -58,7 +73,7 @@ export default function Hero({ content, labels, onApply }) {
         <div className="hero-main-info">
           <div className="hero-meta-year"><span>2026</span> / <span>SEOUL</span></div>
           <h1 className="hero-title" aria-live="polite">
-            <div className="hero-title-slide active"><HeroHeadline item={content.hero[current]} /></div>
+            <div className="hero-title-slide active"><HeroHeadline item={activeHeadline} /></div>
           </h1>
           <button type="button" className="hero-see-project" onClick={onApply}>
             {content.apply}<span className="red-arrow" aria-hidden="true">→</span>

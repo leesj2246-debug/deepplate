@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
-import App from './App.jsx';
+import App from './App';
 
 describe('Deep Plate 주요 사용자 흐름', () => {
   beforeEach(() => {
@@ -24,7 +24,9 @@ describe('Deep Plate 주요 사용자 흐름', () => {
     const user = userEvent.setup();
     render(<App />);
 
-    await user.click(screen.getAllByRole('button', { name: 'キュレーションを申し込む' })[0]);
+    const applyButton = screen.getAllByRole('button', { name: 'キュレーションを申し込む' })[0];
+    expect(applyButton).toBeDefined();
+    await user.click(applyButton!);
 
     expect(screen.getByRole('dialog', { name: '1:1キュレーション申込書' })).toBeInTheDocument();
     expect(document.body.style.overflow).toBe('hidden');
