@@ -1,13 +1,15 @@
 # Deep Plate 현재 상태
 
-마지막 확인일: 2026-08-10
+마지막 확인일: 2026-08-11
 
 ## 저장소와 배포
 
 - GitHub: `https://github.com/leesj2246-debug/deepplate`
-- 현재 작업 브랜치: `codex/typescript-migration`
+- 운영 기준 브랜치: `main`
 - 프로덕션: `https://deepplate.vercel.app/`
 - Vercel 프로젝트명: `deepplate`
+- 최신 프로덕션 커밋: `dc5a75b` (`refactor: 랜딩 페이지를 TypeScript 기반으로 전환 (#7)`)
+- 2026-08-11 기준 Vercel 프로덕션 배포 상태는 `READY`이다.
 - 로컬 Vercel 연결 정보는 `.vercel/`에 있으며 저장소에 커밋하지 않는다.
 
 ## 애플리케이션
@@ -17,6 +19,7 @@
 - 언어 선택은 브라우저 `localStorage`의 `deepplate_user_lang`에 저장된다.
 - 페이지 섹션은 `src/components/sections/`, 재사용 가능한 상태 동작은 `src/hooks/`에서 관리한다.
 - 프로덕션 빌드 명령은 `npm run build`이다.
+- 운영 주소에서 데스크톱·모바일, 한국어·일본어·영어 전환, 사이트 내부 Tally 모달, 이미지 로드와 콘솔 오류가 정상임을 확인했다.
 - 공식 운영 거점은 서울이며 `Culinary Archive`, 도쿄, X, `hello@deepplate.co`는 확인된 공식 표기로 사용하지 않는다.
 - Instagram은 계정의 정확한 공개 URL을 확인한 뒤 웹사이트에 연결한다.
 
