@@ -1,13 +1,30 @@
-import ResponsiveImage from '../ResponsiveImage.jsx';
+import type { LocalizedContent } from '../../data/content';
+import ResponsiveImage from '../ResponsiveImage';
+
+interface CurationCardData {
+  image: string;
+  category: string;
+  alt: string;
+}
+
+interface CurationCardProps {
+  card: CurationCardData;
+  index: number;
+  title: string;
+}
+
+interface CurationGridProps {
+  content: LocalizedContent;
+}
 
 const cards = [
   { image: 'dining_space', category: 'CURATED SPACES', alt: 'Curated local dining space' },
   { image: 'hidden_alley', category: 'COMING SOON — SEOUL STORY', alt: 'A hidden alley in Seoul' },
   { image: 'tea_eatery', category: 'DIRECT VERIFICATION', alt: 'A local tea eatery verified in person' },
   { image: 'korean_local_eatery', category: '1:1 CURATION', alt: 'A Korean local eatery' },
-];
+] as const satisfies readonly CurationCardData[];
 
-function CurationCard({ card, index, title }) {
+function CurationCard({ card, index, title }: CurationCardProps) {
   return (
     <article className={`asymmetric-card card-${index + 1} fade-up delay-${index % 2 + 1}`}>
       <div className="card-img-wrap">
@@ -26,7 +43,7 @@ function CurationCard({ card, index, title }) {
   );
 }
 
-export default function CurationGrid({ content }) {
+export default function CurationGrid({ content }: CurationGridProps) {
   return (
     <div className="content-container">
       <section className="main-grid-container" id="curations" aria-labelledby="curations-heading">

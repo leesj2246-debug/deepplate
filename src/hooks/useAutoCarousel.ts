@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export default function useAutoCarousel(itemCount, interval = 5000) {
+export default function useAutoCarousel(itemCount: number, interval = 5000) {
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
 
-  const move = (direction) => {
+  const move = (direction: number) => {
     setCurrent((value) => (value + direction + itemCount) % itemCount);
   };
 

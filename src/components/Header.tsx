@@ -1,7 +1,16 @@
 import { useState } from 'react';
-import { languageLabels } from '../data/content.jsx';
+import { languageLabels, supportedLanguages } from '../data/content';
+import type { Language, LocalizedContent, UiLabels } from '../data/content';
 
 const anchors = ['about', 'curations', 'how-it-works', 'faq'];
+
+interface HeaderProps {
+  content: LocalizedContent;
+  labels: UiLabels;
+  lang: Language;
+  onLanguage: (language: Language) => void;
+  onApply: () => void;
+}
 
 function BrandMark() {
   return (
@@ -14,7 +23,7 @@ function BrandMark() {
   );
 }
 
-export default function Header({ content, labels, lang, onLanguage, onApply }) {
+export default function Header({ content, labels, lang, onLanguage, onApply }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -49,7 +58,7 @@ export default function Header({ content, labels, lang, onLanguage, onApply }) {
 
         <div className="nav-right-group">
           <div className="lang-switcher-wrap" role="group" aria-label={labels.language}>
-            {Object.keys(languageLabels).map((code) => (
+            {supportedLanguages.map((code) => (
               <button
                 key={code}
                 className={`lang-btn${lang === code ? ' active' : ''}`}

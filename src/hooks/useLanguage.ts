@@ -1,11 +1,17 @@
 import { useEffect, useState } from 'react';
-import { copy } from '../data/content.jsx';
+import type { Dispatch, SetStateAction } from 'react';
+import { copy } from '../data/content';
+import type { Language } from '../data/content';
 
 const LANGUAGE_STORAGE_KEY = 'deepplate_user_lang';
 
-function getInitialLanguage() {
+function isLanguage(value: string): value is Language {
+  return Object.hasOwn(copy, value);
+}
+
+function getInitialLanguage(): Language {
   const savedLanguage = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-  if (savedLanguage && Object.hasOwn(copy, savedLanguage)) return savedLanguage;
+  if (savedLanguage && isLanguage(savedLanguage)) return savedLanguage;
 
   const browserLanguage = window.navigator.language.toLowerCase();
   if (browserLanguage.startsWith('ko')) return 'ko';
@@ -13,7 +19,7 @@ function getInitialLanguage() {
   return 'en';
 }
 
-export default function useLanguage() {
+export default function useLanguage(): readonly [Language, Dispatch<SetStateAction<Language>>] {
   const [language, setLanguage] = useState(getInitialLanguage);
 
   useEffect(() => {
@@ -22,5 +28,5 @@ export default function useLanguage() {
     window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   }, [language]);
 
-  return [language, setLanguage];
+  return [language, setLanguage] as const;
 }

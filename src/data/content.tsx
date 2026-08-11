@@ -1,3 +1,67 @@
+import type { ReactNode } from 'react';
+
+export const supportedLanguages = ['ja', 'ko', 'en'] as const;
+export type Language = (typeof supportedLanguages)[number];
+
+export type HeroItem =
+  | {
+    first: string;
+    before: string;
+    accent: string;
+    after: string;
+    firstBefore?: never;
+    firstAccent?: never;
+    firstAfter?: never;
+    second?: never;
+  }
+  | {
+    firstBefore: string;
+    firstAccent: string;
+    firstAfter: string;
+    second: string;
+    first?: never;
+    before?: never;
+    accent?: never;
+    after?: never;
+  };
+
+type TextPair = readonly [string, string];
+
+export interface UiLabels {
+  skip: string;
+  primaryNav: string;
+  home: string;
+  language: string;
+  openMenu: string;
+  closeMenu: string;
+  carousel: string;
+  previousSlide: string;
+  nextSlide: string;
+  slide: string;
+  of: string;
+  scroll: string;
+  formTitle: string;
+  closeForm: string;
+  openExternal: string;
+}
+
+export interface LocalizedContent {
+  nav: readonly [string, string, string, string];
+  apply: string;
+  hero: readonly [HeroItem, HeroItem, HeroItem];
+  problemTitle: ReactNode;
+  problemBody: ReactNode;
+  solution: string;
+  curationTitle: ReactNode;
+  cardTitles: readonly [string, string, string, string];
+  howTitle: string;
+  howSubtitle: string;
+  steps: readonly [TextPair, TextPair, TextPair];
+  applyWide: string;
+  faqTitle: string;
+  faqs: readonly [TextPair, TextPair, TextPair, TextPair];
+}
+
 export const formUrl = 'https://tally.so/r/ZjAlQe';
 export const formEmbedUrl = 'https://tally.so/embed/ZjAlQe?hideTitle=1&transparentBackground=1';
 
@@ -5,7 +69,7 @@ export const languageLabels = {
   ja: '日本語',
   ko: '한국어',
   en: 'English',
-};
+} satisfies Record<Language, string>;
 
 export const uiLabels = {
   ja: {
@@ -59,7 +123,7 @@ export const uiLabels = {
     closeForm: 'Close request form',
     openExternal: 'Open in new tab',
   },
-};
+} satisfies Record<Language, UiLabels>;
 
 export const copy = {
   ja: {
@@ -149,4 +213,4 @@ export const copy = {
       ["What if I can't register for the waiting list on site?", "If you don't have a Korean phone number, contact us for individual guidance where possible. This is a manual support service, not automated waiting registration."],
     ],
   },
-};
+} satisfies Record<Language, LocalizedContent>;
