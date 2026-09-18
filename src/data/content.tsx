@@ -42,7 +42,10 @@ export interface UiLabels {
   scroll: string;
   formTitle: string;
   closeForm: string;
-  openExternal: string;
+  formLoading: string;
+  reloadForm: string;
+  formStorageError: string;
+  retryCheckout: string;
 }
 
 export interface LocalizedContent {
@@ -62,7 +65,7 @@ export interface LocalizedContent {
   faqs: readonly [TextPair, TextPair, TextPair, TextPair];
 }
 
-export const formUrl = 'https://tally.so/r/ZjAlQe';
+export const formId = 'ZjAlQe';
 export const formEmbedUrl = 'https://tally.so/embed/ZjAlQe?hideTitle=1&transparentBackground=1';
 
 export const languageLabels = {
@@ -87,7 +90,10 @@ export const uiLabels = {
     scroll: '紹介へ移動',
     formTitle: '1:1キュレーション申込書',
     closeForm: '申込書を閉じる',
-    openExternal: '別のタブで開く',
+    formLoading: '申込書を読み込んでいます…',
+    reloadForm: '再読み込み',
+    formStorageError: '申込は送信されましたが、このブラウザに決済情報を保存できませんでした。ブラウザの保存設定をご確認のうえ、もう一度お試しください。',
+    retryCheckout: '決済画面へもう一度進む',
   },
   ko: {
     skip: '본문으로 바로가기',
@@ -104,7 +110,10 @@ export const uiLabels = {
     scroll: '브랜드 소개로 이동',
     formTitle: '1:1 큐레이션 신청서',
     closeForm: '신청서 닫기',
-    openExternal: '새 탭에서 열기',
+    formLoading: '신청서를 불러오는 중이에요…',
+    reloadForm: '다시 불러오기',
+    formStorageError: '신청은 접수됐지만 이 브라우저에 결제 정보를 저장하지 못했어요. 브라우저 저장 설정을 확인한 뒤 다시 시도해 주세요.',
+    retryCheckout: '결제 화면 다시 열기',
   },
   en: {
     skip: 'Skip to main content',
@@ -121,7 +130,10 @@ export const uiLabels = {
     scroll: 'Scroll to introduction',
     formTitle: '1:1 Curation Request',
     closeForm: 'Close request form',
-    openExternal: 'Open in new tab',
+    formLoading: 'Loading the request form…',
+    reloadForm: 'Reload form',
+    formStorageError: 'Your request was submitted, but this browser could not save the checkout details. Check browser storage settings and try again.',
+    retryCheckout: 'Try checkout again',
   },
 } satisfies Record<Language, UiLabels>;
 
@@ -151,7 +163,7 @@ export const copy = {
     faqs: [
       ['申し込んでからキュレーションを受け取るまでどのくらいかかりますか？', 'お申し込み完了後、1〜2日以内にお届けいたします。お急ぎの場合はお知らせいただければ、可能な限り対応させていただきます。'],
       ['韓国語が話せなくても申し込めますか？', 'はい、問題ありません。お申込書と結果は韓国語・日本語・英語でご案内します。'],
-      ['お支払いはどのように行いますか？', 'お申込書の送信後、ご希望の連絡方法で利用可能な決済方法をご案内します。決済確認後にキュレーションを開始します。'],
+      ['お支払いはどのように行いますか？', '申込書を送信するとサイト内のテスト決済画面に移動します。現在は課題用の模擬・Tossテスト決済のみで、実際の請求はありません。'],
       ['現地でウェイティング登録（順番待ち）ができない場合はどうすればいいですか？', '韓国の電話番号がなく登録が難しい場合はご連絡ください。自動代行ではなく、可能な範囲で個別にご案内します。'],
     ],
   },
@@ -180,7 +192,7 @@ export const copy = {
     faqs: [
       ['신청 후 큐레이션을 받기까지 얼마나 걸리나요?', '신청 완료 후 1~2일 내로 전달드립니다. 급하신 경우 말씀해주시면 최대한 맞춰드릴게요.'],
       ['한국어를 못해도 신청할 수 있나요?', '네, 문제 없습니다. 신청서와 결과물은 한국어·일본어·영어로 안내해드립니다.'],
-      ['결제는 어떻게 하나요?', '신청서 제출 후 선택하신 연락 방법으로 현재 이용 가능한 결제 수단을 안내드립니다. 결제 확인 후 큐레이션을 시작해요.'],
+      ['결제는 어떻게 하나요?', '신청서를 제출하면 사이트 안의 테스트 결제 화면으로 이동합니다. 현재는 과제용 모의·토스 테스트 결제만 제공하며 실제 청구는 없습니다.'],
       ['현장에서 웨이팅 등록이 안 되면 어떻게 하나요?', '한국 번호가 없어 등록이 어려우시면 연락해주세요. 자동 대행이 아닌 수동 방식으로, 가능한 범위에서 개별 안내해드립니다.'],
     ],
   },
@@ -209,7 +221,7 @@ export const copy = {
     faqs: [
       ['How long does it take to receive the curation after applying?', 'You will receive your report within 1–2 days after completing your request. If you are in a hurry, please let us know and we will accommodate your schedule.'],
       ["Can I apply even if I don't speak Korean?", 'Yes. The request form and results are available in Korean, Japanese, and English.'],
-      ['How do I make the payment?', 'After you submit the form, we will share the currently available payment option through your preferred contact method. Curation begins after payment is confirmed.'],
+      ['How do I make the payment?', 'After you submit the request form, the site moves to test checkout. It currently supports course-only simulation and Toss test payments, with no real charge.'],
       ["What if I can't register for the waiting list on site?", "If you don't have a Korean phone number, contact us for individual guidance where possible. This is a manual support service, not automated waiting registration."],
     ],
   },

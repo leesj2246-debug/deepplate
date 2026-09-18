@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import type { HeroItem, LocalizedContent, UiLabels } from '../data/content';
 import useAutoCarousel from '../hooks/useAutoCarousel';
 import ResponsiveImage from './ResponsiveImage';
@@ -10,6 +11,7 @@ interface HeroHeadlineProps {
 
 interface HeroProps {
   content: LocalizedContent;
+  exploreLabel: string;
   labels: UiLabels;
   onApply: () => void;
 }
@@ -34,7 +36,7 @@ function HeroHeadline({ item }: HeroHeadlineProps) {
   );
 }
 
-export default function Hero({ content, labels, onApply }: HeroProps) {
+export default function Hero({ content, exploreLabel, labels, onApply }: HeroProps) {
   const { current, move, setPaused } = useAutoCarousel(images.length);
   const activeHeadline = content.hero[current] ?? content.hero[0];
 
@@ -73,9 +75,14 @@ export default function Hero({ content, labels, onApply }: HeroProps) {
           <h1 className="hero-title" aria-live="polite">
             <div className="hero-title-slide active"><HeroHeadline item={activeHeadline} /></div>
           </h1>
-          <button type="button" className="hero-see-project" onClick={onApply}>
-            {content.apply}<span className="red-arrow" aria-hidden="true">→</span>
-          </button>
+          <div className="hero-actions">
+            <button type="button" className="hero-see-project" onClick={onApply}>
+              {content.apply}<span className="red-arrow" aria-hidden="true">→</span>
+            </button>
+            <Link className="hero-explore-link" to="/places">
+              {exploreLabel}<span aria-hidden="true">↗</span>
+            </Link>
+          </div>
           <div className="hero-controls-wrap">
             <button className="slide-nav-btn" type="button" onClick={() => move(-1)} aria-label={labels.previousSlide}>←</button>
             <div className="hero-slide-num" aria-label={`${labels.slide} ${current + 1} ${labels.of} ${images.length}`}>
