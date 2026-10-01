@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import type { Language } from '../../data/content';
+import { safeAnalyticsCode, trackEvent } from '../../analytics/analytics';
 import { createGuestPaymentOrder, getPaymentProduct, PaymentRequestError, paymentErrorCode } from './payment-api';
 import type { PaymentConfiguration, PaymentOrder } from './payment-api';
 import { formatPaymentAmount, paymentErrorMessage, paymentUi } from './paymentUi';
@@ -24,10 +25,17 @@ export default function CheckoutPage({ lang, token, isInitializing }: CheckoutPa
   const [error, setError] = useState('');
   const [mockOrder, setMockOrder] = useState<PaymentOrder | null>(null);
   const paymentInProgress = useRef(false);
+  const checkoutViewed = useRef(false);
   const applicationSubmissionId = getCurationApplicationSubmissionId();
   const applicationSubmitted = applicationSubmissionId !== null;
   const widget = useTossWidget(applicationSubmitted ? configuration : null);
   const usesEmbeddedWidget = configuration?.mode === 'toss-test' && configuration.clientKey?.startsWith('test_gck_') === true;
+
+  useEffect(() => {
+    if (checkoutViewed.current) return;
+    checkoutViewed.current = true;
+    trackEvent('checkout_viewed', { application_state: applicationSubmitted ? 'submitted' : 'missing' });
+  }, [applicationSubmitted]);
 
   useEffect(() => {
     let active = true;
@@ -65,6 +73,12 @@ export default function CheckoutPage({ lang, token, isInitializing }: CheckoutPa
       const guest = await createGuestPaymentOrder(configuration.product.id, applicationSubmissionId);
       if (!recordGuestPaymentAccess(guest.order.id, guest.checkoutToken)) throw new PaymentRequestError('CHECKOUT_STORAGE_UNAVAILABLE');
       const order: PaymentOrder = guest.order;
+      trackEvent('payment_started', {
+        product_id: order.productId,
+        amount: order.amount,
+        currency: order.currency,
+        payment_mode: order.mode,
+      });
       if (order.mode === 'mock') { setMockOrder(order); return; }
       await widget.requestPayment(order);
     } catch (cause) {
@@ -72,6 +86,7 @@ export default function CheckoutPage({ lang, token, isInitializing }: CheckoutPa
       if (code === 'PAY_PROCESS_CANCELED' || code === 'USER_CANCEL') {
         navigate('/checkout/fail?code=PAY_PROCESS_CANCELED');
       } else {
+        trackEvent('payment_failed', { failure_code: safeAnalyticsCode(code), failure_stage: 'payment_start' });
         setError(code);
       }
     } finally {

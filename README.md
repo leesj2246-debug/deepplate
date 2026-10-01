@@ -6,7 +6,19 @@ React + Vite로 만든 서울 식당 탐색·저장·큐레이션 신청 MVP입�
 - 백엔드 저장소: https://github.com/leesj2246-debug/deep-plate-backend
 - 기존 운영 랜딩: https://deepplate.vercel.app/
 
-**2026-09-18 현재 결제 변경은 로컬 브랜치 `codex/add-test-payments`에 있습니다. 위 운영 주소에는 아직 새 MVP/결제가 배포되지 않았으며, 제출 완료 URL로 간주하면 안 됩니다.**
+**2026-10-01 확인 기준으로 미션 8 결제 흐름은 원격 `main`에 병합됐고 운영 주소가 정상 표시됩니다. 미션 9-1 분석 기능은 `codex/add-analytics-tracking`에서 구현·검증 중이며, Amplitude·GTM·GA4 환경값 설정과 배포 전에는 실제 외부 수집이 시작되지 않습니다.**
+
+## 미션 9-1 데이터 수집
+
+딥플의 핵심 퍼널을 `방문 → 큐레이션 CTA → Tally 열기 → Tally 제출 → 체크아웃 → 결제 시작 → 서버 확인 성공/실패`로 정의했습니다.
+
+- Amplitude Browser SDK 2로 제품 행동 이벤트 10개를 전송합니다.
+- 같은 이벤트를 GTM `dataLayer`에 보내 GA4 유입 분석과 연결합니다.
+- UTM source·medium·campaign·content·term은 최초 진입 세션 동안 유지합니다.
+- 자동 페이지뷰 대신 쿼리를 제거한 `page_location`을 전송해 결제키가 분석 도구로 넘어가지 않게 합니다.
+- 이름·이메일·전화번호·Tally 답변·제출 ID·주문 ID·결제키·JWT·주문 접근 토큰은 분석 이벤트에 포함하지 않습니다.
+
+지표와 이벤트 정의는 [Metrics](docs/analytics/METRICS.md)와 [Tracking Plan](docs/analytics/TRACKING_PLAN.md), 외부 설정은 [GTM·GA4 설정](docs/analytics/GTM_GA4_SETUP.md), 검증 상태는 [QA 체크리스트](docs/analytics/QA_CHECKLIST.md)를 확인합니다.
 
 ## 선택한 고도화 기능과 이유
 
@@ -46,7 +58,14 @@ npm.cmd ci
 npm.cmd run dev
 ```
 
-프론트 환경 변수는 `VITE_API_BASE_URL` 하나입니다. 기본값은 `http://localhost:3001`이며 배포 시에는 공개 백엔드 HTTPS 주소를 넣어야 합니다.
+프론트 환경 변수는 다음과 같습니다. 분석 키가 비어 있으면 해당 외부 전송만 비활성화되고 신청·결제 기능은 유지됩니다.
+
+| 프론트 환경 변수 | 용도 |
+| --- | --- |
+| `VITE_API_BASE_URL` | 공개 백엔드 HTTPS 주소. 기본값은 `http://localhost:3001` |
+| `VITE_AMPLITUDE_API_KEY` | Amplitude Browser SDK 프로젝트 API Key |
+| `VITE_GTM_ID` | Google Tag Manager Web 컨테이너 ID |
+| `VITE_ANALYTICS_DEBUG` | Preview·로컬 QA 콘솔 로그. Production은 `false` |
 
 백엔드 저장소에서 `.env.example`을 참고해 설정합니다.
 
@@ -87,7 +106,7 @@ npm.cmd test
 npm.cmd run build
 ```
 
-프론트 자동 테스트는 검증된 Tally 로드 이벤트, 저장 실패 재시도, 30분 세션 만료, 결제 직접 접근 차단, 비회원 주문 토큰, 버튼 한 번으로 토스 결제창 요청을 포함해 **27개 모두 통과**했습니다. lint와 production build도 통과했습니다. 테스트 대역을 사용한 자동 검사이며 실제 PG 승인 증거를 대신하지 않습니다.
+프론트 자동 테스트는 기존 신청·결제 시나리오와 UTM 유지, 쿼리 제거, 실패 코드 제한, 결제 이벤트 발생 조건을 포함해 **29개 모두 통과**했습니다. lint와 production build도 통과했습니다. 테스트 대역을 사용한 자동 검사이며 실제 PG 승인 또는 Amplitude·GA4 수신 증거를 대신하지 않습니다.
 
 - 성공: 큐레이션 신청 제출 → 로그인 없는 결제 화면 → 시뮬레이션 승인 → 완료
 - 취소: 주문 생성 → 취소 흐름 보기 → 취소 안내. 서버에서는 미승인 주문으로 남음

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import CurationFormModal from '../../components/CurationFormModal';
 import { uiLabels } from '../../data/content';
@@ -6,6 +6,7 @@ import type { Language } from '../../data/content';
 import { getBudgetText, getPlaceName, isVerifiedPlace, placeUi } from './places';
 import { usePlace } from './usePlaces';
 import { recordCurationApplicationSubmission } from '../payments/payment-entry';
+import { trackEvent } from '../../analytics/analytics';
 
 interface PlaceDetailPageProps {
   canSave: boolean;
@@ -28,6 +29,18 @@ export default function PlaceDetailPage({ canSave, lang, savingId, isSaved, onTo
   const { placeId } = useParams();
   const { error, isLoading, place, retry } = usePlace(placeId);
   const labels = placeUi[lang];
+  const viewedPlaceRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!place || viewedPlaceRef.current === place.id) return;
+    viewedPlaceRef.current = place.id;
+    trackEvent('place_detail_viewed', {
+      place_slug: place.slug,
+      area: place.area,
+      category: place.category,
+      verification_status: place.verificationStatus,
+    });
+  }, [place]);
 
   if (isLoading) {
     return <main className="mvp-state-page"><p role="status">{labels.loading}</p></main>;
@@ -105,7 +118,10 @@ export default function PlaceDetailPage({ canSave, lang, savingId, isSaved, onTo
               >
                 {savingId === place.id ? labels.saving : (canSave ? (saved ? labels.remove : labels.save) : labels.loginToSave)}
               </button>
-              <button className="mvp-primary-action" type="button" onClick={() => setFormOpen(true)}>
+              <button className="mvp-primary-action" type="button" onClick={() => {
+                trackEvent('curation_cta_clicked', { cta_location: 'place_detail', place_slug: place.slug });
+                setFormOpen(true);
+              }}>
                 {labels.apply}
               </button>
             </div>
@@ -113,7 +129,7 @@ export default function PlaceDetailPage({ canSave, lang, savingId, isSaved, onTo
           </article>
         </div>
       </main>
-      <CurationFormModal labels={uiLabels[lang]} open={formOpen} onClose={() => setFormOpen(false)} onSubmitted={finishApplication} />
+      <CurationFormModal labels={uiLabels[lang]} open={formOpen} source="place_detail" onClose={() => setFormOpen(false)} onSubmitted={finishApplication} />
     </>
   );
 }

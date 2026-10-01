@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { trackEvent } from '../../analytics/analytics';
 import type { Language } from '../../data/content';
 import PlaceCard from './PlaceCard';
 import type { Restaurant } from './place-api';
@@ -19,6 +20,7 @@ interface PlacesPageProps {
 const budgets = [30_000, 50_000, 100_000];
 
 export default function PlacesPage({ canSave, error, isLoading, savingId, places, lang, isSaved, onRetry, onToggleSaved }: PlacesPageProps) {
+  const viewedRef = useRef(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeBudget, setActiveBudget] = useState<number | null>(null);
   const [query, setQuery] = useState('');
@@ -40,6 +42,12 @@ export default function PlacesPage({ canSave, error, isLoading, savingId, places
       && matchesBudget
       && (!normalizedQuery || searchableText.includes(normalizedQuery));
   });
+
+  useEffect(() => {
+    if (viewedRef.current || isLoading || error) return;
+    viewedRef.current = true;
+    trackEvent('place_list_viewed', { catalog_size: places.length });
+  }, [error, isLoading, places.length]);
 
   const resetFilters = () => {
     setActiveFilter('all');

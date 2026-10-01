@@ -50,6 +50,7 @@ function renderFlow(path: string, strict = false, token: string | null = 'test-t
 }
 
 beforeEach(() => {
+  window.dataLayer = [];
   window.sessionStorage.clear();
   recordCurationApplicationSubmission('test-submission');
   tossWidgetMock.validateMethod.mockClear();
@@ -118,6 +119,8 @@ describe('결제 사용자 흐름', () => {
     await user.click(screen.getByRole('button', { name: '시뮬레이션 승인' }));
     expect(await screen.findByRole('heading', { name: '모의 결제 확인 완료' })).toBeInTheDocument();
     expect(fetchMock.mock.calls.filter(([url]) => String(url).endsWith('/payments/guest/orders'))).toHaveLength(1);
+    await waitFor(() => expect(window.dataLayer?.filter((event) => event.event === 'payment_started')).toHaveLength(1));
+    await waitFor(() => expect(window.dataLayer?.filter((event) => event.event === 'payment_succeeded')).toHaveLength(1));
   });
 
   it('로그인하지 않아도 현재 신청 건에 한정된 토큰으로 결제 결과를 확인한다', async () => {
@@ -265,6 +268,12 @@ describe('결제 사용자 흐름', () => {
     expect(screen.getByRole('heading', { name: '결제창이 취소되었어요' })).toBeInTheDocument();
     expect(screen.queryByText('UNTRUSTED_PROVIDER_MESSAGE')).not.toBeInTheDocument();
     expect(fetchMock).not.toHaveBeenCalled();
+    expect(window.dataLayer?.at(-1)).toMatchObject({
+      event: 'payment_failed',
+      failure_code: 'PAY_PROCESS_CANCELED',
+      failure_stage: 'provider_return',
+    });
+    expect(JSON.stringify(window.dataLayer)).not.toContain('UNTRUSTED_PROVIDER_MESSAGE');
   });
 
   it('주문 내역의 로딩과 빈 상태를 안내하고 미확정 주문을 같은 번호로 복구한다', async () => {

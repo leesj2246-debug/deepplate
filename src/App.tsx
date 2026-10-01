@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import RouteAnalytics from './analytics/RouteAnalytics';
 import ScrollToTop from './components/ScrollToTop';
 import LoginPage from './features/auth/LoginPage';
 import RequireAuth from './features/auth/RequireAuth';
@@ -41,6 +42,7 @@ export default function App() {
 
   return (
     <>
+      <RouteAnalytics language={lang} userId={auth.user?.id ?? null} />
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<LandingPage lang={lang} onLanguage={setLang} />} />

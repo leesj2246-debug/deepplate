@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import type { Language } from '../../data/content';
+import { safeAnalyticsCode, trackEvent } from '../../analytics/analytics';
 import { confirmPaymentOrder, paymentErrorCode, readPaymentCallback, reconcilePaymentOrder } from './payment-api';
 import type { PaymentAccess, PaymentOrder } from './payment-api';
 import { getGuestPaymentAccess } from './payment-entry';
@@ -74,6 +75,7 @@ function Confirmation({ lang, token, search }: { lang: Language; token: string |
   const [recovering, setRecovering] = useState(false);
   const recoveryInProgress = useRef(false);
   const confirmation = useRef<{ signature: string; promise: Promise<PaymentOrder> } | null>(null);
+  const outcomeTracked = useRef(false);
 
   useEffect(() => {
     if (!callback || !access) return;
@@ -110,6 +112,33 @@ function Confirmation({ lang, token, search }: { lang: Language; token: string |
     }
   }
 
+  useEffect(() => {
+    if (outcomeTracked.current) return;
+    const order = result.order;
+    if (order?.status === 'PAID') {
+      outcomeTracked.current = true;
+      trackEvent('payment_succeeded', {
+        product_id: order.productId,
+        amount: order.amount,
+        currency: order.currency,
+        payment_mode: order.mode,
+        confirmation_source: 'server',
+      });
+      return;
+    }
+    const failureCode = order?.status === 'FAILED' ? order.failureCode : result.error;
+    if (!failureCode || uncertainCodes.has(failureCode)) return;
+    outcomeTracked.current = true;
+    trackEvent('payment_failed', {
+      product_id: order?.productId,
+      amount: order?.amount,
+      currency: order?.currency,
+      payment_mode: order?.mode,
+      failure_code: safeAnalyticsCode(failureCode),
+      failure_stage: 'server_confirmation',
+    });
+  }, [result.error, result.order]);
+
   if (!callback) return <p className="payment-error" role="alert">{labels.invalid}</p>;
   if (!access) return <p className="payment-error" role="alert">{labels.accessLost}</p>;
   if (result.loading) return <p className="payment-loader" role="status">{labels.checking}</p>;
@@ -141,6 +170,16 @@ export default function PaymentResultPage({ lang, token, kind }: PaymentResultPa
   const location = useLocation();
   const code = new URLSearchParams(location.search).get('code');
   const canceled = code === 'PAY_PROCESS_CANCELED' || code === 'USER_CANCEL';
+  const failureTracked = useRef(false);
+
+  useEffect(() => {
+    if (kind !== 'fail' || failureTracked.current) return;
+    failureTracked.current = true;
+    trackEvent('payment_failed', {
+      failure_code: safeAnalyticsCode(code),
+      failure_stage: 'provider_return',
+    });
+  }, [code, kind]);
 
   return <main className="payment-page">
     <section className="payment-panel">

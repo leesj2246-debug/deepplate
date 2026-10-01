@@ -1,18 +1,21 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { formEmbedUrl, formId } from '../data/content';
 import type { UiLabels } from '../data/content';
+import { trackEvent } from '../analytics/analytics';
 
 interface CurationFormModalProps {
   labels: UiLabels;
   open: boolean;
+  source: string;
   onClose: () => void;
   onSubmitted: (submissionId: string) => boolean;
 }
 
-export default function CurationFormModal({ labels, open, onClose, onSubmitted }: CurationFormModalProps) {
+export default function CurationFormModal({ labels, open, source, onClose, onSubmitted }: CurationFormModalProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const submittedRef = useRef(false);
+  const openedRef = useRef(false);
   const [frameAttempt, setFrameAttempt] = useState(0);
   const [frameLoaded, setFrameLoaded] = useState(false);
   const [pendingSubmissionId, setPendingSubmissionId] = useState<string | null>(null);
@@ -27,6 +30,16 @@ export default function CurationFormModal({ labels, open, onClose, onSubmitted }
     setFrameLoaded(false);
     setFrameAttempt((current) => current + 1);
   }
+
+  useEffect(() => {
+    if (!open) {
+      openedRef.current = false;
+      return;
+    }
+    if (openedRef.current) return;
+    openedRef.current = true;
+    trackEvent('curation_form_opened', { cta_location: source, form_id: formId });
+  }, [open, source]);
 
   useEffect(() => {
     if (!open) return undefined;
@@ -58,7 +71,13 @@ export default function CurationFormModal({ labels, open, onClose, onSubmitted }
           || typeof message.payload.id !== 'string'
           || !message.payload.id) return;
         submittedRef.current = true;
-        if (!onSubmitted(message.payload.id)) setPendingSubmissionId(message.payload.id);
+        const checkoutEntrySaved = onSubmitted(message.payload.id);
+        trackEvent('curation_form_submitted', {
+          cta_location: source,
+          checkout_entry_saved: checkoutEntrySaved,
+          form_id: formId,
+        });
+        if (!checkoutEntrySaved) setPendingSubmissionId(message.payload.id);
       } catch {
         // Tally가 아닌 메시지나 불완전한 이벤트는 무시합니다.
       }
@@ -76,7 +95,7 @@ export default function CurationFormModal({ labels, open, onClose, onSubmitted }
       window.removeEventListener('message', handleMessage);
       previousActiveElement?.focus();
     };
-  }, [open, closeForm, onSubmitted]);
+  }, [open, closeForm, onSubmitted, source]);
 
   function retryCheckout() {
     if (pendingSubmissionId && onSubmitted(pendingSubmissionId)) setPendingSubmissionId(null);

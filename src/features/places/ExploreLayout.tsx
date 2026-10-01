@@ -2,6 +2,7 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import BrandMark from '../../components/BrandMark';
 import LanguageSwitcher from '../../components/LanguageSwitcher';
 import type { Language } from '../../data/content';
+import { trackEvent } from '../../analytics/analytics';
 import { placeUi } from './places';
 import './places.css';
 
@@ -44,7 +45,7 @@ export default function ExploreLayout({
         <nav className="mvp-nav" aria-label={labels.exploreNav}>
           <NavLink to="/places">{labels.exploreNav}</NavLink>
           <NavLink to="/saved">{labels.savedNav}<span className="mvp-saved-count">{savedCount}</span></NavLink>
-          <Link to="/?apply=1">{applyLabel}</Link>
+          <Link to="/?apply=1" onClick={() => trackEvent('curation_cta_clicked', { cta_location: 'explore_header' })}>{applyLabel}</Link>
           <NavLink to="/orders">{ordersLabel}</NavLink>
         </nav>
         <div className="mvp-header-actions">
