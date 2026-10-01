@@ -18,8 +18,9 @@
    - `ga4-realtime-events.csv`
    - `README.md`
 5. `05-promotion/`
-   - 채널별 UTM 링크
-   - 실제 게시 화면 또는 게시 URL 증빙
+   - `utm-links.csv`
+   - `channel-copy-drafts.md`
+   - 실제 게시 후 게시 화면 또는 게시 URL 증빙 추가
 
 ## 현재 상태
 
@@ -30,7 +31,7 @@
 - Amplitude 프로젝트 연결: 완료 (`Deep Plate Mission 9`)
 - GTM·GA4 연결: 완료 (`GTM-WGK2NBJF` 버전 3, `G-YF18TE4LRB`)
 - Vercel Preview 1차 QA: 완료 — Amplitude Live Events와 GA4 실시간 개요에서 수신 확인
-- Preview 환경 분리: 코드와 `VITE_ANALYTICS_ENV=preview` 설정 완료, 새 Preview 배포·재검증 대기
+- Preview 환경 분리: 코드와 `VITE_ANALYTICS_ENV=preview` 설정 완료, Amplitude에서 `environment=preview` 재검증 완료
 - GitHub: Draft PR #10 생성
 - 외부 3개 채널 게시: 사용자 최종 확인 전 초안
 - 최종 ZIP: 대기

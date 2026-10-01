@@ -22,26 +22,26 @@
 
 | 상태 | 검사 |
 | --- | --- |
-| 대기 | `page_viewed` 수신 |
-| 대기 | 신청 CTA → 폼 열기 → 제출 이벤트 순서 확인 |
+| 통과 | Vercel Preview `page_viewed` 수신 |
+| 부분 통과 | 신청 CTA → 폼 열기 순서 확인, Tally 실제 제출은 대기 |
 | 대기 | 체크아웃 → 결제 시작 → 결제 성공 이벤트 순서 확인 |
 | 대기 | 결제 취소가 `payment_failed`와 `PAY_PROCESS_CANCELED`로 수신 |
-| 대기 | UTM 4종과 공통 속성 수신 |
-| 대기 | 개인정보·결제 비밀값 미수신 |
+| 통과 | UTM 4종과 공통 속성 수신, `environment=preview` 확인 |
+| 통과 | 이벤트 속성에 개인정보·결제 비밀값이 없고 IP Address가 `-`로 표시됨 |
 
 ## GTM·GA4
 
 | 상태 | 검사 |
 | --- | --- |
-| 대기 | GTM Preview에서 컨테이너 연결 확인 |
-| 대기 | Google 태그 1회 실행 |
-| 대기 | GA4 DebugView에서 `page_view` 확인 |
-| 대기 | GA4 DebugView에서 신청·결제 이벤트 확인 |
-| 대기 | SPA 경로 변경당 페이지뷰 1회 |
-| 대기 | 자동 페이지뷰와 History Change 수집 비활성화 확인 |
-| 대기 | `page_location`에 결제 성공 query string 미포함 |
+| 통과 | Vercel Preview에서 `GTM-WGK2NBJF` 로드 확인 |
+| 통과 | GA4 실시간 개요에서 Google 태그 수신 확인 |
+| 통과 | GA4 실시간 개요에서 `page_view` 확인 |
+| 부분 통과 | GA4에서 신청·탐색·체크아웃 이벤트 확인, 결제 성공·취소는 대기 |
+| 통과 | Preview 브라우저 로그에서 SPA 경로별 `page_viewed` 1회 확인 |
+| 통과 | GTM 자동 페이지뷰와 GA4 History 기반 페이지 변경 수집 비활성화 확인 |
+| 통과 | 코드·Amplitude 수신 속성에서 `page_location`의 query string 미포함 확인 |
 
-Amplitude와 GA4 표의 항목은 실제 프로젝트·컨테이너 연결 뒤에만 `통과`로 바꾼다. 로컬 `dataLayer` 성공을 외부 수신 성공으로 기록하지 않는다.
+Amplitude와 GA4 표의 `통과`는 2026-10-01 Vercel Preview, Amplitude Live Events, GA4 실시간 개요를 교차 확인한 결과다. DebugView는 `debug_mode`를 보내지 않아 0대로 표시됐으며, 실제 수신은 실시간 개요에서 검증했다.
 
 ## 고정 QA 시나리오
 

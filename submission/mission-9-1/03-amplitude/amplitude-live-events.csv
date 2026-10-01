@@ -3,3 +3,4 @@ observed_at_kst,event_name,amplitude_user_id,page_path,utm_campaign,utm_content,
 2026-10-01 18:32:54,page_viewed,1731821426708,/places,mission9_preview,pr10,-,Amplitude Live Events
 2026-10-01 18:33:18,page_viewed,1731821426708,/checkout,mission9_preview,pr10,-,Amplitude Live Events
 2026-10-01 18:33:18,checkout_viewed,1731821426708,/checkout,mission9_preview,pr10,-,Amplitude Live Events
+2026-10-01 18:40:51,page_viewed,1731821426708,/,mission9_preview_final,pr10_env,-,Amplitude Live Events
