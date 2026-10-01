@@ -1,0 +1,11 @@
+observed_at_kst,report_window,event_name,event_count,source
+2026-10-01 18:34,last_30_minutes,page_view,7,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,user_engagement,3,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,checkout_viewed,2,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,curation_cta_clicked,2,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,curation_form_opened,2,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,first_visit,2,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,scroll,2,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,session_start,2,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,place_detail_viewed,1,GA4 Realtime overview
+2026-10-01 18:34,last_30_minutes,place_list_viewed,1,GA4 Realtime overview

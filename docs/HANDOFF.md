@@ -1,47 +1,59 @@
 # Deep Plate 작업 인수인계
 
-마지막 갱신: 2026-08-11
-
-이 문서는 새 채팅이 직전 작업을 바로 이어가기 위한 현재 상태 요약이다. 과거 대화를 계속 누적하지 않고, 의미 있는 작업이 끝날 때마다 최신 정보로 교체한다.
+마지막 갱신: 2026-10-01
 
 ## 현재 작업 상태
 
-- 운영 기준 브랜치: `main`
-- 병합 완료 PR: [#7 TypeScript 전환 및 화면 동작 개선](https://github.com/leesj2246-debug/deepplate/pull/7)
-- 프로덕션 커밋: `dc5a75b` (`refactor: 랜딩 페이지를 TypeScript 기반으로 전환 (#7)`)
-- 프로덕션: `https://deepplate.vercel.app/`
-- Vercel 프로덕션 상태: `READY`
+- 작업 브랜치: `codex/add-analytics-tracking`
+- 기준 원격 브랜치: `origin/main` (`4dfaf48`)
+- 프로덕션: `https://deepplate.vercel.app/` — 2026-10-01 화면 로드 확인
+- 이번 브랜치는 로컬 격리 복사본 `ai 브레인/worktrees/deepplate-analytics`에 있다.
+- 원본 `딥플 렌딩페이지`의 미커밋 문서·이미지·스크립트는 수정하거나 복사하지 않았다.
+- 이번 분석 변경은 아직 push·PR·Vercel Preview 배포 전이다.
 
-## 최근 완료한 작업
+## 미션 9-1 구현
 
-- 새 채팅이 바로 이어서 작업하도록 `AGENTS.md`에 인수인계 규칙을 추가하고 이 문서를 만들었다.
-- React 19 + Vite 8 코드를 TypeScript 기반 컴포넌트·훅 구조로 전환했다.
-- 페이지 섹션은 `src/components/sections/`, 재사용 동작은 `src/hooks/`, 다국어 콘텐츠는 `src/data/`로 분리했다.
-- 히어로 영역에 마우스를 올려도 자동 슬라이드가 계속 넘어가도록 수정했다.
-- `SCROLL DOWN` 원형 버튼의 화살표 잘림을 제거하고 시각적 중심을 아래쪽으로 보정했다.
-- 마지막 코드 변경에서 `npm run lint`, `npm run test`, `npm run build`가 통과했고 브라우저 콘솔 오류가 없음을 확인했다.
-- PR #7을 `main`에 병합하고 Vercel 프로덕션 자동 배포를 완료했다.
-- 운영 주소에서 데스크톱·모바일, 한국어·일본어·영어, Tally 모달, 이미지와 콘솔 오류를 다시 확인했다.
+- 핵심 퍼널: 방문 → CTA → Tally 열기 → 제출 → 체크아웃 → 결제 시작 → 서버 확인 성공/실패.
+- `src/analytics/analytics.ts`가 공통 속성, 세션 UTM, Amplitude Browser SDK 2, GTM dataLayer를 관리한다.
+- Amplitude SDK는 API Key가 있을 때만 hydration 이후 별도 청크로 불러온다.
+- `RouteAnalytics.tsx`가 SPA 페이지뷰와 Amplitude 사용자 속성을 동기화한다.
+- 랜딩·탐색·식당 상세·Tally·결제 화면에 Tracking Plan의 10개 이벤트를 연결했다.
+- 결제 성공은 URL이 아니라 백엔드 `PAID` 응답 뒤에만 기록한다.
+- `page_location`에서 query를 제거하고 Tally 답변·제출 ID·주문 ID·결제키·토큰·이메일 등 민감값을 보내지 않는다.
+- 지표, Tracking Plan, GTM·GA4 설정, QA, UTM 홍보 문서를 `docs/analytics/`에 작성했다.
+- 제출 자료 구조와 로컬 화면 증빙은 `submission/mission-9-1/`에 있다.
 
-## 특이사항과 미확정 사항
+## 검증 결과
 
-- PR #7의 구현 작업과 프로덕션 검증은 완료됐다. 다음 구현은 별도 `codex/` 브랜치와 새 PR에서 시작한다.
-- `docs/PROJECT_STATE.md`에 기록된 Tally 한국어 상세 질문 열 재연동 점검은 아직 미해결 상태다.
-- 가격, 결제 수단, 결과물 형식과 공식 연락 채널은 확정되지 않은 내용을 임의로 외부 문구에 추가하지 않는다.
+- `npm.cmd run lint`: 통과
+- `npm.cmd test`: 4 files, 29 tests 통과
+- `npm.cmd run build`: 통과. 앱 326.29 kB, Amplitude 별도 청크 237.37 kB
+- 인앱 브라우저: 랜딩·Tally 모달·결제 직접 진입 안내 정상, 콘솔 오류 0건
+- 브라우저 디버그 로그: `page_viewed`, `curation_cta_clicked`, `curation_form_opened`, `checkout_viewed`와 UTM 속성 확인
+- 자동 테스트: UTM 세션 유지, page URL query 제거, 실패 코드 제한, 결제 시작·서버 성공·취소 로그 확인
 
-## 보호할 기존 로컬 파일
+## 외부 서비스 확인 상태
 
-아래 항목은 이번 인수인계 작업 전부터 미커밋 또는 미추적 상태였다. 별도 확인 없이 삭제하거나 다른 커밋에 포함하지 않는다.
+- GA4: 속성 `a409677082p556075975`에 `Deep Plate Production` 웹 스트림을 만들었다. 스트림 ID는 `15917983986`, 측정 ID는 `G-YF18TE4LRB`다.
+- GA4 향상된 측정의 브라우저 기록 기반 페이지 변경 수집을 껐다. 초기 자동 `page_view`는 GTM의 `send_page_view=false`로 막는다.
+- GTM: `GTM-WGK2NBJF` 버전 3을 게시했다. 자동 페이지뷰 대신 쿼리 없는 `page_location`을 사용하는 표준 `page_view`와 9개 행동 이벤트를 전송한다.
+- 중복 GTM `GTM-WJVCP7ZT`는 변경하지 않았다.
+- Amplitude: `Deep Plate Mission 9` 프로젝트를 만들었다. Browser SDK API Key는 코드·문서에 기록하지 않고 Vercel Preview 환경 변수에만 저장했다.
+- Vercel Preview: `VITE_AMPLITUDE_API_KEY`, `VITE_GTM_ID`, `VITE_ANALYTICS_DEBUG=true`를 저장했다.
+- Preview QA에서 Vite의 `MODE`가 `production`으로 기록되는 문제를 발견해 `VITE_ANALYTICS_ENV=preview` 분리를 코드와 Vercel Preview 설정에 추가했다. 재배포 후 Amplitude에서 `environment=preview`를 확인했다.
+- GitHub Draft PR: `https://github.com/leesj2246-debug/deepplate/pull/10`
+- 1차 Preview: `https://deepplate-git-codex-add-analyt-83db79-leesj2246-debugs-projects.vercel.app`
+- 1차 Preview에서 랜딩·Tally 신청서·맛집 목록·맛집 상세·결제 선행조건 화면을 확인했다.
+- Amplitude Live Events에서 Preview UTM 이벤트와 IP Address `-`를 확인했고, GA4 실시간 개요에서 `page_view`와 5개 Deep Plate 행동 이벤트 수신을 확인했다.
 
-- `docs/INDEX.md`의 기존 로컬 변경
-- `DEEP_PLATE_AI_BUSINESS_BRIEF.md`
-- `assets/images/deep-plate-logo.svg`
-- `public/images/deep-plate-form-cover-v1.png`
+## 다음 시작점
 
-## 다음 작업 시작점
+1. 결제 성공·취소는 실제 결제나 백엔드 mock을 사용할 수 있을 때 별도로 검증한다.
+2. 제출 직전 GTM 버전 3 화면 캡처와 실제 게시 증빙을 추가하고 ZIP으로 묶는다.
+3. Production 배포와 실제 채널 홍보는 별도 승인 후 진행한다.
 
-1. `git status --short --branch`로 기존 로컬 변경을 다시 확인한다.
-2. 새 작업은 최신 `main`을 기준으로 별도 `codex/` 브랜치에서 시작한다.
-3. 하나의 명확한 결과물을 새 채팅의 작업 범위로 정한다.
-4. 변경 사항은 Draft PR로 먼저 검토하고 프로덕션 배포는 별도 승인을 받은 뒤 진행한다.
-5. 작업을 마치기 전에 이 문서를 실제 결과 기준으로 다시 갱신한다.
+## 보호 경계
+
+- 운영 고객·Tally 원본 응답·결제 데이터는 수정하거나 삭제하지 않는다.
+- 비밀키와 고객 정보는 코드·문서·스크린샷·Git에 넣지 않는다.
+- 원본 작업 폴더의 미커밋 파일은 이번 브랜치에 포함하지 않는다.

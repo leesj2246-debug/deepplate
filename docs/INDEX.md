@@ -9,6 +9,7 @@
 | 기술 또는 제품 방향을 결정·검토 | `DECISIONS.md` |
 | GitHub PR 및 Vercel 배포 | `runbooks/deploy.md` |
 | Tally 설문과 Google Sheets 응답 관리 | `runbooks/forms-and-responses.md` |
+| 미션 9 지표·로그·Amplitude·GA4·UTM | `analytics/METRICS.md`, `analytics/TRACKING_PLAN.md`, `analytics/GTM_GA4_SETUP.md`, `analytics/QA_CHECKLIST.md`, `analytics/UTM_CAMPAIGNS.md` |
 | UI·브랜드 변경 | 루트 `DESIGN_GUIDE.md`와 실제 `src/` 스타일을 함께 확인 |
 
 문서와 실제 코드·외부 서비스가 다르면 실제 상태를 우선하고 관련 문서를 갱신한다.

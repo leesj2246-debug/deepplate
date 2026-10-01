@@ -1,0 +1,5 @@
+channel,utm_source,utm_medium,utm_campaign,utm_content,url,status
+카카오톡,kakao,messenger,mission9_launch,founder_invite_v1,https://deepplate.vercel.app/?utm_source=kakao&utm_medium=messenger&utm_campaign=mission9_launch&utm_content=founder_invite_v1,draft
+네이버 블로그,naver,blog,mission9_launch,curation_story_v1,https://deepplate.vercel.app/?utm_source=naver&utm_medium=blog&utm_campaign=mission9_launch&utm_content=curation_story_v1,draft
+인스타그램,instagram,social,mission9_launch,local_plate_card_v1,https://deepplate.vercel.app/?utm_source=instagram&utm_medium=social&utm_campaign=mission9_launch&utm_content=local_plate_card_v1,draft
+서울역 QR,seoul_station,offline_qr,mission9_launch,passport_card_v1,https://deepplate.vercel.app/?utm_source=seoul_station&utm_medium=offline_qr&utm_campaign=mission9_launch&utm_content=passport_card_v1,optional
