@@ -9,7 +9,7 @@
 - 프로덕션: `https://deepplate.vercel.app/` — 2026-10-01 화면 로드 확인
 - 이번 브랜치는 로컬 격리 복사본 `ai 브레인/worktrees/deepplate-analytics`에 있다.
 - 원본 `딥플 렌딩페이지`의 미커밋 문서·이미지·스크립트는 수정하거나 복사하지 않았다.
-- 이번 분석 변경은 아직 push·PR·Vercel 배포 전이다.
+- 이번 분석 변경은 아직 push·PR·Vercel Preview 배포 전이다.
 
 ## 미션 9-1 구현
 
@@ -34,19 +34,20 @@
 
 ## 외부 서비스 확인 상태
 
-- GA4: 로그인된 기존 속성 `a409677082p556075975`가 있으나 데이터 스트림이 없다. 이메일 커뮤니케이션 선택 모달이 열려 있다.
-- GTM: 비어 있는 Deep Plate Web 컨테이너가 2개 있다. `GTM-WGK2NBJF`, `GTM-WJVCP7ZT` 모두 변경사항·최근 데이터가 없다.
-- Amplitude: 로그인 전이며 기존 프로젝트 여부는 미확인이다.
-- 외부 프로젝트·데이터 스트림·API Key 생성과 GTM 게시 전 사용자 확인이 필요하다.
+- GA4: 속성 `a409677082p556075975`에 `Deep Plate Production` 웹 스트림을 만들었다. 스트림 ID는 `15917983986`, 측정 ID는 `G-YF18TE4LRB`다.
+- GA4 향상된 측정의 브라우저 기록 기반 페이지 변경 수집을 껐다. 초기 자동 `page_view`는 GTM의 `send_page_view=false`로 막는다.
+- GTM: `GTM-WGK2NBJF` 버전 3을 게시했다. 자동 페이지뷰 대신 쿼리 없는 `page_location`을 사용하는 표준 `page_view`와 9개 행동 이벤트를 전송한다.
+- 중복 GTM `GTM-WJVCP7ZT`는 변경하지 않았다.
+- Amplitude: `Deep Plate Mission 9` 프로젝트를 만들었다. Browser SDK API Key는 코드·문서에 기록하지 않고 Vercel Preview 환경 변수에만 저장했다.
+- Vercel Preview: `VITE_AMPLITUDE_API_KEY`, `VITE_GTM_ID`, `VITE_ANALYTICS_DEBUG=true`를 저장했다. 새 배포가 있어야 적용된다.
 
 ## 다음 시작점
 
-1. Amplitude Google 로그인을 승인받고 기존 프로젝트가 없으면 `Deep Plate Mission 9` 프로젝트를 만든다.
-2. GA4의 이메일 커뮤니케이션은 모두 선택 해제 상태로 저장한 뒤 `deepplate.vercel.app` Web 데이터 스트림을 만든다.
-3. GTM 중 하나만 선택해 Google 태그와 Tracking Plan 이벤트 태그를 만들고 Preview에서 확인한다.
-4. Vercel Preview에 `VITE_AMPLITUDE_API_KEY`, `VITE_GTM_ID`, `VITE_ANALYTICS_DEBUG=true`를 설정한다.
-5. Preview mock 흐름으로 성공·취소 QA 후 Amplitude·GA4 스크린샷·CSV를 제출 폴더에 추가한다.
-6. 관련 변경만 커밋·push하고 한국어 Draft PR을 만든다. Production 배포는 별도 승인 후 진행한다.
+1. 관련 변경을 커밋·push하고 한국어 Draft PR을 만든다.
+2. 자동 생성된 Vercel Preview 배포에서 랜딩·신청·탐색·결제 성공·취소 이벤트를 실행한다.
+3. Amplitude와 GA4 DebugView에서 수신 이벤트와 민감정보 미포함을 확인한다.
+4. Amplitude·GA4·GTM 화면 증빙과 CSV 샘플을 제출 폴더에 추가한다.
+5. Production 배포와 실제 채널 홍보는 별도 승인 후 진행한다.
 
 ## 보호 경계
 

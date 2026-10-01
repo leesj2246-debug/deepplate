@@ -114,7 +114,11 @@ export function initializeAnalytics() {
   const amplitudeApiKey = safeText(import.meta.env.VITE_AMPLITUDE_API_KEY, 200);
   if (amplitudeApiKey) {
     amplitudeClient = import('@amplitude/analytics-browser').then((client) => {
-      client.init(amplitudeApiKey, { defaultTracking: false, autocapture: false });
+      client.init(amplitudeApiKey, {
+        defaultTracking: false,
+        autocapture: false,
+        trackingOptions: { ipAddress: false },
+      });
       return client;
     }).catch(() => {
       if (import.meta.env.VITE_ANALYTICS_DEBUG === 'true') console.warn('[analytics] Amplitude 초기화 실패');

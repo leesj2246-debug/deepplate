@@ -30,8 +30,9 @@
 - Tracking Plan: 작성
 - 로깅 코드: 구현 완료
 - 로컬 QA: lint·29 tests·build·브라우저 확인 완료
-- Amplitude 프로젝트 연결: 대기
-- GTM·GA4 연결: 대기
+- Amplitude 프로젝트 연결: 완료 (`Deep Plate Mission 9`)
+- GTM·GA4 연결: 완료 (`GTM-WGK2NBJF` 버전 3, `G-YF18TE4LRB`)
+- Vercel Preview 환경 변수: 완료, 새 Preview 배포 대기
 - 외부 3개 채널 게시: 사용자 최종 확인 전 초안
 - 최종 ZIP: 대기
 
