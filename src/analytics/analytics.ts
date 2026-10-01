@@ -154,7 +154,7 @@ export function trackEvent(name: AnalyticsEventName, properties: AnalyticsProper
     auth_state: authState,
     visitor_type: visitorType,
     device_type: deviceType(),
-    environment: import.meta.env.MODE,
+    environment: safeText(import.meta.env.VITE_ANALYTICS_ENV, 20) ?? import.meta.env.MODE,
     ...currentAttribution(),
   };
   const payload = cleanProperties({ ...common, ...properties });

@@ -2,24 +2,21 @@
 
 이 폴더는 로깅 구현·Amplitude·GA4 증빙을 모아 최종 ZIP으로 제출하기 위한 작업 폴더다.
 
-## 포함할 파일
+## 포함 파일
 
 1. `01-code/`
    - `analytics-module.png`
    - `funnel-instrumentation.png`
    - `tracking-plan.pdf` 또는 Markdown 원본
 2. `02-gtm/`
-   - `gtm-google-tag.png`
-   - `gtm-custom-event-tag.png`
-   - `gtm-preview-events.png`
+   - `gtm-version-3-evidence.md`
+   - 제출 직전 GTM 버전 3 화면 캡처를 추가
 3. `03-amplitude/`
-   - `amplitude-live-events.png`
-   - `amplitude-event-properties.png`
-   - 가능하면 CSV 샘플
+   - `amplitude-live-events.csv`
+   - `README.md`
 4. `04-ga4/`
-   - `ga4-debugview.png`
-   - `ga4-realtime-acquisition.png`
-   - 가능하면 CSV 샘플
+   - `ga4-realtime-events.csv`
+   - `README.md`
 5. `05-promotion/`
    - 채널별 UTM 링크
    - 실제 게시 화면 또는 게시 URL 증빙
@@ -32,7 +29,9 @@
 - 로컬 QA: lint·29 tests·build·브라우저 확인 완료
 - Amplitude 프로젝트 연결: 완료 (`Deep Plate Mission 9`)
 - GTM·GA4 연결: 완료 (`GTM-WGK2NBJF` 버전 3, `G-YF18TE4LRB`)
-- Vercel Preview 환경 변수: 완료, 새 Preview 배포 대기
+- Vercel Preview 1차 QA: 완료 — Amplitude Live Events와 GA4 실시간 개요에서 수신 확인
+- Preview 환경 분리: 코드와 `VITE_ANALYTICS_ENV=preview` 설정 완료, 새 Preview 배포·재검증 대기
+- GitHub: Draft PR #10 생성
 - 외부 3개 채널 게시: 사용자 최종 확인 전 초안
 - 최종 ZIP: 대기
 

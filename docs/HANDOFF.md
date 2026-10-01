@@ -39,14 +39,19 @@
 - GTM: `GTM-WGK2NBJF` 버전 3을 게시했다. 자동 페이지뷰 대신 쿼리 없는 `page_location`을 사용하는 표준 `page_view`와 9개 행동 이벤트를 전송한다.
 - 중복 GTM `GTM-WJVCP7ZT`는 변경하지 않았다.
 - Amplitude: `Deep Plate Mission 9` 프로젝트를 만들었다. Browser SDK API Key는 코드·문서에 기록하지 않고 Vercel Preview 환경 변수에만 저장했다.
-- Vercel Preview: `VITE_AMPLITUDE_API_KEY`, `VITE_GTM_ID`, `VITE_ANALYTICS_DEBUG=true`를 저장했다. 새 배포가 있어야 적용된다.
+- Vercel Preview: `VITE_AMPLITUDE_API_KEY`, `VITE_GTM_ID`, `VITE_ANALYTICS_DEBUG=true`를 저장했다.
+- Preview QA에서 Vite의 `MODE`가 `production`으로 기록되는 문제를 발견해 `VITE_ANALYTICS_ENV=preview` 분리를 코드와 Vercel Preview 설정에 추가했다. 새 배포에서 재검증해야 한다.
+- GitHub Draft PR: `https://github.com/leesj2246-debug/deepplate/pull/10`
+- 1차 Preview: `https://deepplate-git-codex-add-analyt-83db79-leesj2246-debugs-projects.vercel.app`
+- 1차 Preview에서 랜딩·Tally 신청서·맛집 목록·맛집 상세·결제 선행조건 화면을 확인했다.
+- Amplitude Live Events에서 Preview UTM 이벤트와 IP Address `-`를 확인했고, GA4 실시간 개요에서 `page_view`와 5개 Deep Plate 행동 이벤트 수신을 확인했다.
 
 ## 다음 시작점
 
-1. 관련 변경을 커밋·push하고 한국어 Draft PR을 만든다.
-2. 자동 생성된 Vercel Preview 배포에서 랜딩·신청·탐색·결제 성공·취소 이벤트를 실행한다.
-3. Amplitude와 GA4 DebugView에서 수신 이벤트와 민감정보 미포함을 확인한다.
-4. Amplitude·GA4·GTM 화면 증빙과 CSV 샘플을 제출 폴더에 추가한다.
+1. 환경 분리 커밋을 push해 새 Vercel Preview를 생성한다.
+2. 새 Preview 이벤트의 `environment=preview`와 Amplitude·GA4 수신을 재검증한다.
+3. 결제 성공·취소는 실제 결제나 백엔드 mock을 사용할 수 있을 때 별도로 검증한다.
+4. 제출 직전 GTM 버전 3 화면 캡처와 실제 게시 증빙을 추가하고 ZIP으로 묶는다.
 5. Production 배포와 실제 채널 홍보는 별도 승인 후 진행한다.
 
 ## 보호 경계

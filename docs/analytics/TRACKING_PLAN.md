@@ -39,7 +39,7 @@
 | `auth_state` | `anonymous`, `authenticated` | 로그인 여부. 사용자 정보는 포함하지 않음 |
 | `visitor_type` | `new`, `returning` | 같은 브라우저의 이전 방문 여부 |
 | `device_type` | `mobile`, `tablet`, `desktop` | 화면 너비 기준 |
-| `environment` | `production`, `development`, `test` | 실행 환경 |
+| `environment` | `production`, `preview`, `development`, `test` | 분석 데이터가 발생한 실행 환경. Vercel Preview는 `VITE_ANALYTICS_ENV=preview`로 분리 |
 | `utm_source` | `kakao`, `naver`, `instagram` | 채널 |
 | `utm_medium` | `messenger`, `blog`, `social` | 매체 유형 |
 | `utm_campaign` | `mission9_launch` | 캠페인 |

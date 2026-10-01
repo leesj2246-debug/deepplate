@@ -32,6 +32,7 @@
 
 - Preview: `Deep Plate Mission 9` Amplitude 프로젝트와 `utm_campaign=mission9_qa`
 - Production: 제출·홍보용 프로젝트
+- `VITE_ANALYTICS_ENV=preview`를 Preview에만 설정해 검증 이벤트를 운영 이벤트와 구분한다.
 - `VITE_ANALYTICS_DEBUG=true`는 Preview QA에서만 사용하고 Production은 `false`로 둔다.
 
 Vite 환경 변수는 빌드 시점에 포함되므로 값을 추가한 뒤 새 배포가 필요하다.
